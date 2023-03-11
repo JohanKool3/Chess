@@ -9,6 +9,7 @@ namespace Chess
         static void Main(string[] args)
         {
             LogicalBoard board = new LogicalBoard();
+            Console.WriteLine(board);
 
         }
     }
