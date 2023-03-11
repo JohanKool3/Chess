@@ -1,2 +1,15 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+using Chess;
+using Chess.Managers;
+
+namespace Chess
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            LogicalBoard board = new LogicalBoard();
+
+        }
+    }
+}
