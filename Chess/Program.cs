@@ -1,5 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Chess;
 using Chess.Managers;
 
 namespace Chess
@@ -9,7 +8,6 @@ namespace Chess
         static void Main(string[] args)
         {
             LogicalBoard board = new LogicalBoard();
-            Console.WriteLine(board);
 
         }
     }

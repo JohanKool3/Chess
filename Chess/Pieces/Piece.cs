@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess
+namespace Chess.Pieces
 {
     internal class Piece
     {
