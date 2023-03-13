@@ -17,24 +17,6 @@ namespace Chess.Pieces
         {
             this.setValue(1); // Pawns are worth 1 point
         }
-
-        // Check to see if the move is valid
-        private bool checkValid(string newSquare)
-        {
-            bool valid = true;
-            // Check that the move is valid...
-            return valid;
-        }
-
-        public void movePiece(string newSquare)
-        {
-            //Check that the move is valid...
-
-            if (checkValid(newSquare))
-            {
-                setSquare(newSquare);
-            }
-        }
-
+   
     }
 }

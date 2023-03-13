@@ -11,7 +11,7 @@ namespace Chess.Managers
     {
         private Dictionary<string, Piece> contents = new Dictionary<string, Piece>();
 
-        private void createBoard()
+        private void CreateBoard()
         {
             List<string> ranks = new List<string>();
             ranks.Add("A");
@@ -33,7 +33,7 @@ namespace Chess.Managers
 
         }
 
-        private void addPiece(Piece newPiece, string key)
+        private void AddPiece(Piece newPiece, string key)
         {
             try
             {
@@ -44,34 +44,68 @@ namespace Chess.Managers
                 Console.Write($"Key {key} is not compatable");
             }
         }
-        private void populateBoard()
+        private void PopulateBoard()
         {
+
             // White Pawns
             for (char file = 'A'; file <= 'H'; file ++)
             {
-                addPiece(new Pawn("White", $"{file}2"), $"{file}2");
+                AddPiece(new Pawn("White", $"{file}2"), $"{file}2");
             }
+            // White Rooks
+            AddPiece(new Rook("White", "A1"), "A1");
+            AddPiece(new Rook("White", "H1"), "H1");
+
+            // White Knights
+            AddPiece(new Knight("White", "B1"), "B1");
+            AddPiece(new Knight("White", "G1"), "G1");
+
+            // White Bishops
+            AddPiece(new Bishop("White", "C1"), "C1");
+            AddPiece(new Bishop("White", "F1"), "F1");
+
+            // White Royalty
+            AddPiece(new Queen("White", "D1"), "D1");
+            AddPiece(new King("White", "E1"), "E1");
+
 
             // Black Pawns
-            for(char file = 'A'; file <= 'H'; file++)
+            for (char file = 'A'; file <= 'H'; file++)
             {
-                addPiece(new Pawn("Black", $"{file}7"), $"{file}7");
+                AddPiece(new Pawn("Black", $"{file}7"), $"{file}7");
             }
+            // Black Rooks
+            AddPiece(new Rook("Black", "A8"), "A8");
+            AddPiece(new Rook("Black", "H8"), "H8");
+
+            // Black Knights
+            AddPiece(new Knight("Black", "B8"), "B8");
+            AddPiece(new Knight("Black", "G8"), "G8");
+
+            // Black Bishops
+            AddPiece(new Bishop("Black", "C8"), "C8");
+            AddPiece(new Bishop("Black", "F8"), "F8");
+
+            // Black Royalty
+            AddPiece(new Queen("Black", "D8"), "D8");
+            AddPiece(new King("Black", "E8"), "E8");
+
+            
             
         }
         public LogicalBoard()
         {
             // Create the board
-            createBoard();
-            populateBoard();
-            displayBoard();
+            CreateBoard();
+            PopulateBoard();
+            DisplayBoard();
         }
 
-        public void customBoardSetup()
+        public void CustomBoardSetup()
         {
         }
 
-        public void displayBoard() 
+        public void DisplayBoard() 
         { 
             // This method will display the contents that are currently stored inside of this object in a board layout
 

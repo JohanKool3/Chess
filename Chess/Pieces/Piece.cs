@@ -12,6 +12,7 @@ namespace Chess.Pieces
         private string pieceCode { get;}
         private int value { get; set; }
         private string square { get; set; }
+        private List<Move> legalMoves = new List<Move>();
 
         public Piece(string piece, string color, string startSquare)
         {
@@ -19,6 +20,25 @@ namespace Chess.Pieces
             square = startSquare ;
         }
 
+        public bool checkValid(string newSquare)
+        {
+            bool valid = true;
+            // Check that the move is valid...
+            return valid;
+        }
+
+        public void MovePiece(string newSquare)
+        {
+            if (checkValid(newSquare))
+            {
+
+            }
+        }
+
+        public void addMove(Move move)
+        {
+            legalMoves.Add(move);
+        }
         public string getSquare()
         {
             return square ;
