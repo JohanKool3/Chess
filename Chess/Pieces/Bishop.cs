@@ -10,7 +10,7 @@ namespace Chess.Pieces
     {
         public Bishop(string color, string startSquare): base("Bishop", color, startSquare)
         {
-            this.setValue(3); // Bishops are worth 3 points
+            this.SetValue(3); // Bishops are worth 3 points
         }
     }
 }

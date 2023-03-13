@@ -9,7 +9,7 @@ namespace Chess.Managers
 {
     internal class LogicalBoard
     {
-        private Dictionary<string, Piece> contents = new Dictionary<string, Piece>();
+        private Dictionary<string, Piece> Contents = new Dictionary<string, Piece>();
 
         private void CreateBoard()
         {
@@ -27,7 +27,7 @@ namespace Chess.Managers
             {
                 foreach(int rank in Enumerable.Range(1, 8))
                 {
-                    contents.Add($"{file}{rank}", null);
+                    Contents.Add($"{file}{rank}", null);
                 }
             }
 
@@ -37,7 +37,7 @@ namespace Chess.Managers
         {
             try
             {
-                contents[key] = newPiece;
+                Contents[key] = newPiece;
             }
             catch
             {
@@ -104,7 +104,6 @@ namespace Chess.Managers
         public void CustomBoardSetup()
         {
         }
-
         public void DisplayBoard() 
         { 
             // This method will display the contents that are currently stored inside of this object in a board layout
@@ -117,7 +116,7 @@ namespace Chess.Managers
                 {
                     string square = $"{file}{rank}"; //Creates the key of the square to be displayed
 
-                    Piece piece = contents[square]; // Fetches the contents of that square
+                    Piece piece = Contents[square]; // Fetches the contents of that square
                     string output = "";
 
                     // Adds readouts for the Ranks
@@ -131,7 +130,7 @@ namespace Chess.Managers
                     }
                     else
                     {
-                        Console.Write($"{output}({piece.getPieceCode()})|");
+                        Console.Write($"{output}({piece.GetPieceCode()})|");
                     }
                 }
                 Console.WriteLine();
@@ -142,6 +141,25 @@ namespace Chess.Managers
                 Console.Write($"   {file}  ");
             }
             Console.WriteLine();
+
+        }
+
+        public void LoadMoves()
+        {
+            foreach(var piece in Contents.Values)
+            {
+                if (piece != null)
+                {
+                    piece.GenerateMoves();
+                }
+
+            }
+        }
+        public List<Move> GetPieceMoves(string square)
+        {
+            Piece piece = Contents[square];
+
+            return piece.GetMoves();
 
         }
     }

@@ -10,7 +10,7 @@ namespace Chess.Pieces
     {
         public Queen(string color, string startSquare): base("Queen", color, startSquare)
         {
-            this.setValue(9); // Queens are worth 9 points
+            this.SetValue(9); // Queens are worth 9 points
         }
     }
        

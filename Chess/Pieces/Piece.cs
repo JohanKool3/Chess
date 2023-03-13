@@ -9,66 +9,96 @@ namespace Chess.Pieces
     internal class Piece
     {
         // This class is the super class for all of the piece types
-        private string pieceCode { get;}
-        private int value { get; set; }
-        private string square { get; set; }
-        private List<Move> legalMoves = new List<Move>();
+        private string Color { get;} // The color of the piece (either "White" or "Black")
+        private string PieceCode { get;} // The code of the piece (format is "wK" for white king)
+        private int Value { get; set; } // The material value of the given chess piece
+        private string Square { get; set; } // The key of the square that the piece is on (using the notation of the board)
+        private List<Move> LegalMoves = new List<Move>(); // The moves that the piece can make that abide by the rules of chess
 
+        // Constructor
         public Piece(string piece, string color, string startSquare)
         {
-            pieceCode = $"{char.ToUpper(color[0])}-{char.ToUpper(piece[0])}"; // e.g. "wK"
-            square = startSquare ;
+            PieceCode = $"{char.ToUpper(color[0])}-{char.ToUpper(piece[0])}"; // e.g. "wK"
+            Color = color;
+            Square = startSquare ;
         }
 
-        public bool checkValid(string newSquare)
+        public override string ToString()
+        {
+            return $"{PieceCode}| Current Square {Square}";
+        }
+
+        // Special Methods
+        private bool CheckValidMove(Move move)
         {
             bool valid = true;
-            // Check that the move is valid...
+
+            // If the move is out of bounds
+
+            // If the move puts the friendly king into check
+
+            // If the move is blocked by another friendly piece
+
+            // If the move is blocked by an enemy piece and the move is not a capture
+
             return valid;
         }
 
-        public void MovePiece(string newSquare)
-        {
-            if (checkValid(newSquare))
+        public void MovePiece(Move move)
+        { // This method is purely to update the attributes inside of the piece, Board updates will be done inside of the 'LogicalBoard' object
+            if (LegalMoves.Contains(move))
             {
-
+                Square = move.GetEndSquare(); // Sets the square of the piece to the destination square
             }
         }
 
-        public void addMove(Move move)
+        public void AddMove(Move move)
         {
-            legalMoves.Add(move);
-        }
-        public string getSquare()
-        {
-            return square ;
-        }
-
-        public string getPieceCode()
-        {
-            return pieceCode;
-        }
-
-        public int getValue()
-        {
-            return value;
-        }
-
-        public void setValue(int value)
-        {
-            if (0 < value  && value < 10)
+            if (CheckValidMove(move))
             {
-                this.value = value;
-            }
-            else
-            {
-                Console.WriteLine($"{value} is invalid. It must be a value between 1 and 9!");
+                LegalMoves.Add(move);
             }
         }
 
-        public void setSquare(string newSquare)
+        public virtual void GenerateMoves()
         {
-            square = newSquare;
+
+        }
+
+        // Get Methods
+        public string GetColor()
+        {
+            return Color;
+        }
+        public int GetValue()
+        {
+            return Value;
+        }
+
+        public string GetPieceCode()
+        {
+            return PieceCode;
+        }
+
+        public string GetSquare()
+        {
+            return Square;
+        }
+
+        public List<Move> GetMoves()
+        {
+            return LegalMoves;
+        }
+
+        // Set Methods
+        public void SetValue(int value)
+        {
+            Value = value;
+        }
+
+        public void SetSquare(string square)
+        {
+            Square = square;
         }
 
     }   

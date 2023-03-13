@@ -10,7 +10,7 @@ namespace Chess.Pieces
     {
         public Knight(string color, string startSquare): base("Knight",color, startSquare)
         { 
-            this.setValue(3); // Knights are worth 3 points
+            this.SetValue(3); // Knights are worth 3 points
         }
     }
 }

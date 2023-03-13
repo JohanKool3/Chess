@@ -12,7 +12,7 @@ namespace Chess.Pieces
 
         public Rook(string color, string startSquare): base("Rook", color, startSquare)
         {
-            this.setValue(5); // Rooks are worth 5 points
+            this.SetValue(5); // Rooks are worth 5 points
         }
     }
 }
