@@ -45,10 +45,13 @@ namespace Chess.Pieces
                 AddMove(new Move(GetSquare(), destSquare, this)); 
                 
             }
-
-            
             
         }
-   
+
+        public override void MovePiece(Move move)
+        {
+            base.MovePiece(move);
+            firstMove = false;
+        }
     }
 }

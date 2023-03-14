@@ -44,7 +44,7 @@ namespace Chess.Pieces
             return valid;
         }
 
-        public void MovePiece(Move move)
+        public virtual void MovePiece(Move move)
         { // This method is purely to update the attributes inside of the piece, Board updates will be done inside of the 'LogicalBoard' object
             if (LegalMoves.Contains(move))
             {

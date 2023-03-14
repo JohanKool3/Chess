@@ -10,6 +10,9 @@ namespace Chess.Managers
     internal class LogicalBoard
     {
         private Dictionary<string, Piece> Contents = new Dictionary<string, Piece>();
+        // Objects that will be responsible for material counts and checks later on in development
+        private Side WhitePieces = new Side("White");
+        private Side BlackPieces = new Side("Black");
 
         private void CreateBoard()
         {
@@ -32,12 +35,21 @@ namespace Chess.Managers
             }
 
         }
-
         private void AddPiece(Piece newPiece, string key)
         {
             try
             {
                 Contents[key] = newPiece;
+
+                // Adding Piece references to the side objects
+                if(newPiece.GetColor() == "White")
+                {
+                    WhitePieces.AddPiece(newPiece);
+                }
+                else
+                {
+                    BlackPieces.AddPiece(newPiece);
+                }
             }
             catch
             {
@@ -101,7 +113,7 @@ namespace Chess.Managers
             DisplayBoard();
         }
 
-        public void CustomBoardSetup()
+        public static void CustomBoardSetup()
         {
         }
         public void DisplayBoard() 
@@ -155,12 +167,46 @@ namespace Chess.Managers
 
             }
         }
+
+        public void MovePiece(Move move)
+        {
+            // There will be another function that handles taking pieces
+            try
+            {
+                Piece movingPiece = Contents[move.GetStartSquare()];
+                movingPiece.MovePiece(move);
+                
+
+                // Update the board to reflect the move that has been made within the piece object
+                Contents[move.GetStartSquare()] = null;
+                Contents[move.GetEndSquare()] = movingPiece;
+
+                DisplayBoard();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid square");
+            }
+
+        }
         public List<Move> GetPieceMoves(string square)
         {
             Piece piece = Contents[square];
 
             return piece.GetMoves();
 
+        }
+
+        public List<Move> GetSideMoves(string color)
+        {
+            if(color == "white")
+            {
+                return WhitePieces.GetAllSideMoves();
+            }
+            else
+            {
+                return BlackPieces.GetAllSideMoves();
+            }
         }
     }
 }
