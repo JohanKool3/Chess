@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Chess.Managers;
+﻿using Chess.Managers;
 using Chess.Pieces;
 
 namespace Chess
@@ -36,12 +35,49 @@ namespace Chess
                 index++;
             }
         }
+
+        static void TakeMoveInput(LogicalBoard board, ref string color, int index) 
+        {
+            List<Move> moves = board.GetSideMoves(color);
+            Move move = moves[index - 1];
+            board.MovePiece(move);
+
+            if(color == "white")
+            {
+                color = "black";
+                
+            }
+            else
+            {
+                color = "white";
+            }
+        }
         static void Main(string[] args)
         {
+            //Initial Setup
+            string color = "white";
             LogicalBoard board = new LogicalBoard();
-            board.LoadMoves();
+            
 
-            DisplayAllSideMoves(board, "white");
+      
+            for (int i = 0; i <= 10; i++)
+            {
+                try
+                {
+                    board.DisplayBoard();
+                    board.LoadMoves();
+                    DisplayAllSideMoves(board, color);
+                    int index = Int32.Parse(Console.ReadLine());
+                    TakeMoveInput(board, ref color, index);
+                    Console.Clear();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Invalid Input");
+                }
+            }
+            
+
 
         }
     }

@@ -62,7 +62,7 @@ namespace Chess.Pieces
 
         public virtual void GenerateMoves()
         {
-
+            LegalMoves.Clear();
         }
 
         // Get Methods

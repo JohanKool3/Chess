@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using Chess;
 
 namespace Chess.Pieces
@@ -21,6 +16,7 @@ namespace Chess.Pieces
 
         public override void GenerateMoves()
         {
+            base.GenerateMoves();
             // This is important for generating the new squares that the piece can move to
             char currentFile = GetSquare()[0];
             int currentRank = Convert.ToInt32(Char.GetNumericValue(GetSquare()[1]));
