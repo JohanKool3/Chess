@@ -54,30 +54,29 @@ namespace Chess
         }
         static void Main(string[] args)
         {
-            //Initial Setup
+        //Initial Setup
             string color = "white";
             LogicalBoard board = new LogicalBoard();
-            
-      
-            for (int i = 0; i <= 10; i++)
+
+            while (true)
             {
                 try
                 {
                     board.DisplayBoard();
-                    board.LoadMoves();
-                    DisplayAllSideMoves(board, color);
-                    int index = Int32.Parse(Console.ReadLine());
-                    TakeMoveInput(board, ref color, index);
-                    Console.Clear();
+                board.LoadMoves();
+                DisplayAllSideMoves(board, color);
+                int index = Int32.Parse(Console.ReadLine());
+                TakeMoveInput(board, ref color, index);
+                Console.Clear();
                 }
                 catch (Exception)
                 {
+                    Console.Clear();
                     Console.WriteLine("Invalid Input");
+
                 }
             }
-            
-
-
+              
         }
     }
 }

@@ -62,45 +62,45 @@ namespace Chess.Managers
             // White Pawns
             for (char file = 'A'; file <= 'H'; file ++)
             {
-                AddPiece(new Pawn("White", $"{file}2"), $"{file}2");
+                AddPiece(new Pawn("White", $"{file}2", this), $"{file}2");
             }
             // White Rooks
-            AddPiece(new Rook("White", "A1"), "A1");
-            AddPiece(new Rook("White", "H1"), "H1");
+            AddPiece(new Rook("White", "A1", this), "A1");
+            AddPiece(new Rook("White", "H1", this), "H1");
 
             // White Knights
-            AddPiece(new Knight("White", "B1"), "B1");
-            AddPiece(new Knight("White", "G1"), "G1");
+            AddPiece(new Knight("White", "B1", this), "B1");
+            AddPiece(new Knight("White", "G1", this), "G1");
 
             // White Bishops
-            AddPiece(new Bishop("White", "C1"), "C1");
-            AddPiece(new Bishop("White", "F1"), "F1");
+            AddPiece(new Bishop("White", "C1", this), "C1");
+            AddPiece(new Bishop("White", "F1", this), "F1");
 
             // White Royalty
-            AddPiece(new Queen("White", "D1"), "D1");
-            AddPiece(new King("White", "E1"), "E1");
+            AddPiece(new Queen("White", "D1", this), "D1");
+            AddPiece(new King("White", "E1", this), "E1");
 
 
             // Black Pawns
             for (char file = 'A'; file <= 'H'; file++)
             {
-                AddPiece(new Pawn("Black", $"{file}7"), $"{file}7");
+                AddPiece(new Pawn("Black", $"{file}7", this), $"{file}7");
             }
             // Black Rooks
-            AddPiece(new Rook("Black", "A8"), "A8");
-            AddPiece(new Rook("Black", "H8"), "H8");
+            AddPiece(new Rook("Black", "A8", this), "A8");
+            AddPiece(new Rook("Black", "H8", this), "H8");
 
             // Black Knights
-            AddPiece(new Knight("Black", "B8"), "B8");
-            AddPiece(new Knight("Black", "G8"), "G8");
+            AddPiece(new Knight("Black", "B8", this), "B8");
+            AddPiece(new Knight("Black", "G8", this), "G8");
 
             // Black Bishops
-            AddPiece(new Bishop("Black", "C8"), "C8");
-            AddPiece(new Bishop("Black", "F8"), "F8");
+            AddPiece(new Bishop("Black", "C8", this), "C8");
+            AddPiece(new Bishop("Black", "F8", this), "F8");
 
             // Black Royalty
-            AddPiece(new Queen("Black", "D8"), "D8");
-            AddPiece(new King("Black", "E8"), "E8");
+            AddPiece(new Queen("Black", "D8", this), "D8");
+            AddPiece(new King("Black", "E8", this), "E8");
 
             
             
@@ -110,7 +110,6 @@ namespace Chess.Managers
             // Create the board
             CreateBoard();
             PopulateBoard();
-            DisplayBoard();
         }
 
         public static void CustomBoardSetup()
@@ -197,6 +196,11 @@ namespace Chess.Managers
 
             return piece.GetMoves();
 
+        }
+
+        public Piece? GetPiece(string square)
+        {
+           return Contents[square];
         }
 
         public List<Move> GetSideMoves(string color)

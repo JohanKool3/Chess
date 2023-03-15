@@ -11,17 +11,19 @@ namespace Chess.Pieces
         private string StartSquare { get;}
         private string EndSquare { get;}
         private Piece Piece { get;}
+        private bool Capture { get; set; } // If the move is a capture
 
-        public Move(string startSquare, string endSquare, Piece piece)
+        public Move(string startSquare, string endSquare, Piece piece, bool capture)
         {
-           StartSquare = startSquare;
-           EndSquare = endSquare;
-           Piece = piece;
+            StartSquare = startSquare;
+            EndSquare = endSquare;
+            Piece = piece;
+            Capture = capture;
         }
 
         public override string ToString()
         {
-            return $"From {StartSquare} to {EndSquare}";
+            return $" {Piece} From {StartSquare} to {EndSquare}";
         }
 
         public string GetStartSquare()
@@ -37,6 +39,9 @@ namespace Chess.Pieces
             return Piece;
         }
 
-
+        public bool GetCapture()
+        {
+            return Capture;
+        }
     }
 }
