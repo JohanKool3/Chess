@@ -23,7 +23,14 @@ namespace Chess.Pieces
 
         public override string ToString()
         {
-            return $" {Piece} From {StartSquare} to {EndSquare}";
+            if (Piece is not Pawn)
+            {
+                return $"{Char.ToLower(Piece.GetPieceCode()[2])}{EndSquare}";
+            }
+            else
+            {
+                return $"{EndSquare}";
+            }
         }
 
         public string GetStartSquare()
@@ -38,7 +45,6 @@ namespace Chess.Pieces
         {
             return Piece;
         }
-
         public bool GetCapture()
         {
             return Capture;

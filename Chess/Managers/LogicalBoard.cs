@@ -14,6 +14,8 @@ namespace Chess.Managers
         private readonly Side WhitePieces = new Side("White");
         private readonly Side BlackPieces = new Side("Black");
 
+        private List<Move> MoveOrder = new List<Move>();
+
         private void CreateBoard()
         {
             List<string> ranks = new List<string>();
@@ -176,6 +178,7 @@ namespace Chess.Managers
             {
                 Piece movingPiece = Contents[move.GetStartSquare()];
                 movingPiece.MovePiece(move);
+                MoveOrder.Add(move);
                 
 
                 // Update the board to reflect the move that has been made within the piece object
@@ -213,6 +216,11 @@ namespace Chess.Managers
             {
                 return BlackPieces.GetAllSideMoves();
             }
+        }
+
+        public List<Move> GetMoveOrder()
+        {
+            return MoveOrder;
         }
     }
 }

@@ -5,6 +5,7 @@ namespace Chess
 {
     public static class Program
     {
+        public static bool running = true;
         static void DisplayMoves(LogicalBoard board, string square)
         {
             List<Move> moves = board.GetPieceMoves(square);
@@ -36,20 +37,47 @@ namespace Chess
             }
         }
 
-        static void TakeMoveInput(LogicalBoard board, ref string color, int index) 
+        static void DisplayMoveOrder(LogicalBoard board)
         {
-            List<Move> moves = board.GetSideMoves(color);
-            Move move = moves[index - 1];
-            board.MovePiece(move);
-
-            if(color == "white")
+            int currentMove = 1;
+            foreach(Move move in board.GetMoveOrder())
             {
-                color = "black";
-                
+                if (currentMove % 2 == 1)
+                {
+                    Console.Write($"{currentMove}. {move}, ");
+                    
+                }
+                else
+                {
+                    Console.WriteLine(move);
+                }
+
+                currentMove++;
+            }
+        }
+        static void TakeMoveInput(LogicalBoard board, ref string color, string userIn) 
+        {
+            userIn = userIn.ToLower();
+            if (userIn ==  "exit" || userIn ==  "q" || userIn ==  "quit")
+            {
+                running = false;
             }
             else
             {
-                color = "white";
+                int index = Int32.Parse(userIn);
+                List<Move> moves = board.GetSideMoves(color);
+                Move move = moves[index - 1];
+                board.MovePiece(move);
+
+                if (color == "white")
+                {
+                    color = "black";
+
+                }
+                else
+                {
+                    color = "white";
+                }
             }
         }
         static void Main(string[] args)
@@ -58,24 +86,31 @@ namespace Chess
             string color = "white";
             LogicalBoard board = new LogicalBoard();
 
-            while (true)
+            while (running)
             {
                 try
                 {
                     board.DisplayBoard();
-                board.LoadMoves();
-                DisplayAllSideMoves(board, color);
-                int index = Int32.Parse(Console.ReadLine());
-                TakeMoveInput(board, ref color, index);
-                Console.Clear();
+                    board.LoadMoves();
+                    DisplayAllSideMoves(board, color);
+                    string userIn = Console.ReadLine();
+                    TakeMoveInput(board, ref color, userIn);
+                    Console.Clear();
                 }
+
                 catch (Exception)
                 {
                     Console.Clear();
                     Console.WriteLine("Invalid Input");
 
                 }
+
+                // End of the program, display the board and moves that were played in the game
+                Console.Clear();
+                board.DisplayBoard();
+                DisplayMoveOrder(board);
             }
+
               
         }
     }
