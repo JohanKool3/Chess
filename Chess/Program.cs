@@ -3,7 +3,7 @@ using Chess.Pieces;
 
 namespace Chess
 {
-    class Program
+    public static class Program
     {
         static void DisplayMoves(LogicalBoard board, string square)
         {
@@ -58,7 +58,6 @@ namespace Chess
             string color = "white";
             LogicalBoard board = new LogicalBoard();
             
-
       
             for (int i = 0; i <= 10; i++)
             {

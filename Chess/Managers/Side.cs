@@ -9,7 +9,7 @@ namespace Chess.Managers
 {
     internal class Side
     {
-        private List<Piece> Pieces = new List<Piece>(); // Contents of the side
+        private readonly List<Piece> Pieces = new List<Piece>(); // Contents of the side
         private string Color; // Color of the side
         public Side(string color)
         {

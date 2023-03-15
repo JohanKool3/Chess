@@ -13,7 +13,7 @@ namespace Chess.Pieces
         private string PieceCode { get;} // The code of the piece (format is "wK" for white king)
         private int Value { get; set; } // The material value of the given chess piece
         private string Square { get; set; } // The key of the square that the piece is on (using the notation of the board)
-        private List<Move> LegalMoves = new List<Move>(); // The moves that the piece can make that abide by the rules of chess
+        private readonly List<Move> LegalMoves = new List<Move>(); // The moves that the piece can make that abide by the rules of chess
 
         // Constructor
         public Piece(string piece, string color, string startSquare)

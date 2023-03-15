@@ -9,10 +9,10 @@ namespace Chess.Managers
 {
     internal class LogicalBoard
     {
-        private Dictionary<string, Piece> Contents = new Dictionary<string, Piece>();
+        private readonly Dictionary<string, Piece> Contents = new Dictionary<string, Piece>();
         // Objects that will be responsible for material counts and checks later on in development
-        private Side WhitePieces = new Side("White");
-        private Side BlackPieces = new Side("Black");
+        private readonly Side WhitePieces = new Side("White");
+        private readonly Side BlackPieces = new Side("Black");
 
         private void CreateBoard()
         {
@@ -115,6 +115,8 @@ namespace Chess.Managers
 
         public static void CustomBoardSetup()
         {
+            // This method will allow the user to create a custom board setup
+            // This will be used for testing purposes
         }
         public void DisplayBoard() 
         { 
