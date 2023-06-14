@@ -55,8 +55,13 @@ namespace Chess
                 currentMove++;
             }
         }
-        static void TakeMoveInput(LogicalBoard board, ref string color, string userIn)
+        static void TakeMoveInput(LogicalBoard board, ref string color, string? userIn)
         {
+            if(userIn == null)
+            {
+                throw new Exception();
+            }
+
             userIn = userIn.ToLower();
             if (userIn ==  "exit" || userIn ==  "q" || userIn ==  "quit")
             {
@@ -93,7 +98,7 @@ namespace Chess
                     board.DisplayBoard();
                     board.LoadMoves();
                     DisplayAllSideMoves(board, color);
-                    string userIn = Console.ReadLine();
+                    string? userIn = Console.ReadLine();
                     TakeMoveInput(board, ref color, userIn);
                     Console.Clear();
                 }

@@ -10,7 +10,7 @@ namespace PieceLibrary.Managers
 {
     public class LogicalBoard
     {
-        private readonly Dictionary<string, Piece> Contents = new Dictionary<string, Piece>();
+        private readonly Dictionary<string, Piece?> Contents = new Dictionary<string, Piece?>();
         // Objects that will be responsible for material counts and checks later on in development
         private readonly Side WhitePieces = new Side("White");
         private readonly Side BlackPieces = new Side("Black");
@@ -132,7 +132,7 @@ namespace PieceLibrary.Managers
                 {
                     string square = $"{file}{rank}"; //Creates the key of the square to be displayed
 
-                    Piece piece = Contents[square]; // Fetches the contents of that square
+                    Piece? piece = Contents[square]; // Fetches the contents of that square
                     string output = "";
 
                     // Adds readouts for the Ranks
@@ -177,9 +177,18 @@ namespace PieceLibrary.Managers
             // There will be another function that handles taking pieces
             try
             {
-                Piece movingPiece = Contents[move.GetStartSquare()];
-                movingPiece.MovePiece(move);
-                MoveOrder.Add(move);
+
+                Piece? movingPiece = Contents[move.GetStartSquare()];
+
+                if (movingPiece != null)
+                {
+                    movingPiece.MovePiece(move);
+                    MoveOrder.Add(move);
+                }
+                else
+                {
+                    Console.WriteLine("No piece to move");
+                }
 
 
                 // Update the board to reflect the move that has been made within the piece object
@@ -196,9 +205,16 @@ namespace PieceLibrary.Managers
         }
         public List<Move> GetPieceMoves(string square)
         {
-            Piece piece = Contents[square];
+            if (Contents[square] != null)
+            {
+                Piece piece = Contents[square];
 
-            return piece.GetMoves();
+                return piece.GetMoves();
+            }
+            else
+            {
+                return new List<Move>();
+            }
 
         }
 
