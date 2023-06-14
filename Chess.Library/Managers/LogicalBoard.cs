@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Chess.Pieces;
+using Chess.Library.Pieces;
 
-namespace Chess.Managers
+namespace Chess.Library.Managers
 {
-    internal class LogicalBoard
+    public class LogicalBoard
     {
-        private readonly Dictionary<string, Piece> Contents = new Dictionary<string, Piece>();
+        private Dictionary<string, Piece> Contents = new Dictionary<string, Piece>();
         // Objects that will be responsible for material counts and checks later on in development
         private readonly Side WhitePieces = new Side("White");
         private readonly Side BlackPieces = new Side("Black");
@@ -18,15 +18,16 @@ namespace Chess.Managers
 
         private void CreateBoard()
         {
-            List<string> ranks = new List<string>();
-            ranks.Add("A");
-            ranks.Add("B");
-            ranks.Add("C");
-            ranks.Add("D");
-            ranks.Add("E");
-            ranks.Add("F");
-            ranks.Add("G");
-            ranks.Add("H");
+            List<string> ranks = new List<string> {
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"};
+
 
             foreach(string file in ranks)
             {
@@ -104,8 +105,8 @@ namespace Chess.Managers
             AddPiece(new Queen("Black", "D8", this), "D8");
             AddPiece(new King("Black", "E8", this), "E8");
 
-            
-            
+
+
         }
         public LogicalBoard()
         {
@@ -119,8 +120,8 @@ namespace Chess.Managers
             // This method will allow the user to create a custom board setup
             // This will be used for testing purposes
         }
-        public void DisplayBoard() 
-        { 
+        public void DisplayBoard()
+        {
             // This method will display the contents that are currently stored inside of this object in a board layout
 
             // Iterates through the ranks from last to first
@@ -179,7 +180,7 @@ namespace Chess.Managers
                 Piece movingPiece = Contents[move.GetStartSquare()];
                 movingPiece.MovePiece(move);
                 MoveOrder.Add(move);
-                
+
 
                 // Update the board to reflect the move that has been made within the piece object
                 Contents[move.GetStartSquare()] = null;
