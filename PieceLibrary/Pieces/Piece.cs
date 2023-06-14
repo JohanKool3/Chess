@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Chess.Managers;
+using PieceLibrary.Managers;
 
-namespace Chess.Pieces
+namespace PieceLibrary.Pieces
 {
-    internal class Piece
+    public class Piece
     {
         /// <summary>
         /// Standard chess piece
         ///</summary>
-        private string Color { get;} // The color of the piece (either "White" or "Black")
-        private string PieceCode { get; set;} // The code of the piece (format is "wK" for white king)
+        private string Color { get; } // The color of the piece (either "White" or "Black")
+        private string PieceCode { get; set; } // The code of the piece (format is "wK" for white king)
         private int Value { get; set; } // The material value of the given chess piece
         private string Square { get; set; } // The key of the square that the piece is on (using the notation of the board)
         private readonly List<Move> LegalMoves = new List<Move>(); // The moves that the piece can make that abide by the rules of chess
@@ -25,7 +25,7 @@ namespace Chess.Pieces
         {
             PieceCode = $"{char.ToUpper(color[0])}-{char.ToUpper(piece[0])}"; // e.g. White King "W-K"
             Color = color;
-            Square = startSquare ;
+            Square = startSquare;
             Board = board;
         }
 
@@ -48,12 +48,12 @@ namespace Chess.Pieces
             // If the move puts the friendly king into check
 
             // If the move is blocked by another friendly piece
-            else if(Board.GetPiece(move.GetEndSquare()) != null && Board.GetPiece(move.GetEndSquare()).GetColor() == Color)
+            else if (Board.GetPiece(move.GetEndSquare()) != null && Board.GetPiece(move.GetEndSquare()).GetColor() == Color)
             {
                 valid = false;
             }
             // If the move is blocked by an enemy piece and the move is not a capture
-            else if(Board.GetPiece(move.GetEndSquare()) != null && Board.GetPiece(move.GetEndSquare()).GetColor() != Color && !move.GetCapture())
+            else if (Board.GetPiece(move.GetEndSquare()) != null && Board.GetPiece(move.GetEndSquare()).GetColor() != Color && !move.GetCapture())
             {
                 valid = false;
             }
@@ -120,7 +120,7 @@ namespace Chess.Pieces
 
         public void SetCode(string code)
         {
-            if (this is Knight && (this.PieceCode != "W-N" || this.PieceCode != "B-N"))
+            if (this is Knight && (PieceCode != "W-N" || PieceCode != "B-N"))
             {
                 PieceCode = code;
             }
@@ -129,5 +129,5 @@ namespace Chess.Pieces
                 Console.WriteLine("Can only change the type of the Knight to adhere to the rules");
             }
         }
-    }   
+    }
 }

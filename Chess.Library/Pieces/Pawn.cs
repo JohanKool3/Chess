@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Chess;
-using Chess.Managers;
+using Chess.Library.Managers;
 
-namespace Chess.Pieces
+namespace Chess.Library.Pieces
 {
 
     internal class Pawn : Piece
@@ -20,7 +20,7 @@ namespace Chess.Pieces
             /// <summary>
             /// This method generates all of the moves that the pawn can make
             /// </summary>
-            /// 
+            ///
             base.GenerateMoves();
             // This is important for generating the new squares that the piece can move to
             int colorMultiplier = 1;
@@ -42,10 +42,10 @@ namespace Chess.Pieces
                 newRank = currentRank + (colorMultiplier * 2);
                 destSquare = $"{currentFile}{newRank}";
 
-                AddMove(new Move(GetSquare(), destSquare, this, false)); 
-                
+                AddMove(new Move(GetSquare(), destSquare, this, false));
+
             }
-            
+
         }
 
         public override void MovePiece(Move move)

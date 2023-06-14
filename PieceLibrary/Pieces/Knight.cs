@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Chess.Managers;
+using PieceLibrary.Managers;
 
-namespace Chess.Pieces
+namespace PieceLibrary.Pieces
 {
-    internal class Knight: Piece
+    internal class Knight : Piece
     {
-        public Knight(string color, string startSquare, LogicalBoard board): base("Knight",color, startSquare, board)
-        { 
-            this.SetValue(3); // Knights are worth 3 points
+        public Knight(string color, string startSquare, LogicalBoard board) : base("Knight", color, startSquare, board)
+        {
+            SetValue(3); // Knights are worth 3 points
             SetCode($"{char.ToUpper(color[0])}-N");
         }
 
@@ -21,10 +21,10 @@ namespace Chess.Pieces
             base.GenerateMoves();
 
             char currentFile = GetSquare()[0];
-            int currentRank = Convert.ToInt32(Char.GetNumericValue(GetSquare()[1]));
+            int currentRank = Convert.ToInt32(char.GetNumericValue(GetSquare()[1]));
 
             // This is a list of all the possible moves that a knight can make
-            
+
             List<string> possibleMoves = new List<string>()
             {
                 $"{(char)(currentFile + 1)}{currentRank + 2}", // Up to the Right
@@ -40,7 +40,7 @@ namespace Chess.Pieces
                 $"{(char)(currentFile - 2)}{currentRank - 1}", // Left then Down
             };
 
-            foreach ( string newSquare in possibleMoves )
+            foreach (string newSquare in possibleMoves)
             {
                 AddMove(new Move(GetSquare(), newSquare, this, false));
             }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Chess.Managers;
+using Chess.Library.Managers;
 
-namespace Chess.Pieces
+namespace Chess.Library.Pieces
 {
     internal class King: Piece
     {
@@ -14,5 +14,5 @@ namespace Chess.Pieces
              // Kings are worth infinite points so they will continue to be worth null points
         }
     }
-    
+
 }

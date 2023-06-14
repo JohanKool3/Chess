@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Chess.Managers;
+using Chess.Library.Managers;
 
-namespace Chess.Pieces
+namespace Chess.Library.Pieces
 {
     internal class Queen: Piece
     {
@@ -14,5 +14,4 @@ namespace Chess.Pieces
             this.SetValue(9); // Queens are worth 9 points
         }
     }
-       
 }

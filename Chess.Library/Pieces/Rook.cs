@@ -4,9 +4,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Chess.Managers;
+using Chess.Library.Managers;
 
-namespace Chess.Pieces
+namespace Chess.Library.Pieces
 {
     internal class Rook: Piece
     {

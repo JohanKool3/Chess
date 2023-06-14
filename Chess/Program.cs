@@ -1,5 +1,5 @@
-﻿using Chess.Managers;
-using Chess.Pieces;
+﻿using PieceLibrary.Pieces;
+using PieceLibrary.Managers;
 
 namespace Chess
 {
@@ -16,7 +16,7 @@ namespace Chess
 
         }
 
-        static void TestPieceMovement(LogicalBoard board) 
+        static void TestPieceMovement(LogicalBoard board)
         {
             //Move the A2 pawn to A4
             Move move = board.GetPieceMoves("A2")[1];
@@ -24,7 +24,7 @@ namespace Chess
             board.MovePiece(move);
         }
 
-        static void DisplayAllSideMoves(LogicalBoard board, string color) 
+        static void DisplayAllSideMoves(LogicalBoard board, string color)
         {
             List<Move> displayMoves = board.GetSideMoves(color);
 
@@ -45,7 +45,7 @@ namespace Chess
                 if (currentMove % 2 == 1)
                 {
                     Console.Write($"{currentMove}. {move}, ");
-                    
+
                 }
                 else
                 {
@@ -55,7 +55,7 @@ namespace Chess
                 currentMove++;
             }
         }
-        static void TakeMoveInput(LogicalBoard board, ref string color, string userIn) 
+        static void TakeMoveInput(LogicalBoard board, ref string color, string userIn)
         {
             userIn = userIn.ToLower();
             if (userIn ==  "exit" || userIn ==  "q" || userIn ==  "quit")
@@ -111,7 +111,7 @@ namespace Chess
                 DisplayMoveOrder(board);
             }
 
-              
+
         }
     }
 }
