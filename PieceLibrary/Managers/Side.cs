@@ -18,11 +18,11 @@ namespace PieceLibrary.Managers
         }
         public void AddPiece(Piece piece)
         {
-            if(piece.GetColor() == Color)
+            if(piece.Color == Color)
             {
                 Pieces.Add(piece);
 
-                if (King == null && (piece.GetPieceCode() == "W-K" || piece.GetPieceCode() == "B-K"))
+                if (King == null && (piece.PieceCode == "W-K" || piece.PieceCode == "B-K"))
                 {
                     King = piece;
                 }
@@ -34,7 +34,7 @@ namespace PieceLibrary.Managers
             List<Move> output = new List<Move>();
             foreach(Piece piece in Pieces)
             {
-                output.AddRange(piece.GetMoves());
+                output.AddRange(piece.LegalMoves);
             }
 
             return output;

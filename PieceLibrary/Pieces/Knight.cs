@@ -11,8 +11,8 @@ namespace PieceLibrary.Pieces
     {
         public Knight(string color, string startSquare, LogicalBoard board) : base("Knight", color, startSquare, board)
         {
-            SetValue(3); // Knights are worth 3 points
-            SetCode($"{char.ToUpper(color[0])}-N");
+            Value = 3; // Knights are worth 3 points
+            PieceCode = $"{char.ToUpper(color[0])}-N";
         }
 
         public override void GenerateMoves()
@@ -20,8 +20,8 @@ namespace PieceLibrary.Pieces
             // Wipes moves from the Legal Moves List
             base.GenerateMoves();
 
-            char currentFile = GetSquare()[0];
-            int currentRank = Convert.ToInt32(char.GetNumericValue(GetSquare()[1]));
+            char currentFile = Square[0];
+            int currentRank = Convert.ToInt32(char.GetNumericValue(Square[1]));
 
             // This is a list of all the possible moves that a knight can make
 
@@ -42,7 +42,7 @@ namespace PieceLibrary.Pieces
 
             foreach (string newSquare in possibleMoves)
             {
-                AddMove(new Move(GetSquare(), newSquare, this, false));
+                AddMove(new Move(Square, newSquare, this, false));
             }
 
 

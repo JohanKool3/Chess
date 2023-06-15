@@ -13,7 +13,7 @@ namespace PieceLibrary.Pieces
 
         public Rook(string color, string startSquare, LogicalBoard board) : base("Rook", color, startSquare, board)
         {
-            SetValue(5); // Rooks are worth 5 points
+            Value = 5; // Rooks are worth 5 points
         }
     }
 }

@@ -12,6 +12,7 @@ namespace PieceLibrary.Pieces
         public King(string color, string startSquare, LogicalBoard board) : base("King", color, startSquare, board)
         {
             // Kings are worth infinite points so they will continue to be worth null points
+            Value = null;
         }
     }
 }

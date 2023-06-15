@@ -45,7 +45,7 @@ namespace PieceLibrary.Managers
                 Contents[key] = newPiece;
 
                 // Adding Piece references to the side objects
-                if(newPiece.GetColor() == "White")
+                if(newPiece.Color == "White")
                 {
                     WhitePieces.AddPiece(newPiece);
                 }
@@ -146,7 +146,7 @@ namespace PieceLibrary.Managers
                     }
                     else
                     {
-                        Console.Write($"{output}({piece.GetPieceCode()})|");
+                        Console.Write($"{output}({piece.PieceCode})|");
                     }
                 }
                 Console.WriteLine();
@@ -178,7 +178,7 @@ namespace PieceLibrary.Managers
             try
             {
 
-                Piece? movingPiece = Contents[move.GetStartSquare()];
+                Piece? movingPiece = Contents[move.StartSquare];
 
                 if (movingPiece != null)
                 {
@@ -192,8 +192,8 @@ namespace PieceLibrary.Managers
 
 
                 // Update the board to reflect the move that has been made within the piece object
-                Contents[move.GetStartSquare()] = null;
-                Contents[move.GetEndSquare()] = movingPiece;
+                Contents[move.StartSquare] = null;
+                Contents[move.EndSquare] = movingPiece;
 
                 DisplayBoard();
             }
@@ -209,7 +209,7 @@ namespace PieceLibrary.Managers
             {
                 Piece piece = Contents[square];
 
-                return piece.GetMoves();
+                return piece.LegalMoves;
             }
             else
             {

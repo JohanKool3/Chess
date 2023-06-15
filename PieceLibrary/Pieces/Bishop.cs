@@ -11,7 +11,7 @@ namespace PieceLibrary.Pieces
     {
         public Bishop(string color, string startSquare, LogicalBoard board) : base("Bishop", color, startSquare, board)
         {
-            SetValue(3); // Bishops are worth 3 points
+            Value = 3; // Bishops are worth 3 points
         }
     }
 }

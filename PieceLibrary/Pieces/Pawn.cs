@@ -11,7 +11,7 @@ namespace PieceLibrary.Pieces
         private bool firstMove = true; // So we know if the piece can move two spaces or not
         public Pawn(string color, string startSquare, LogicalBoard board) : base("Pawn", color, startSquare, board)
         {
-            SetValue(1); // Pawns are worth 1 point
+            Value = 1; // Pawns are worth 1 point
         }
 
         public override void GenerateMoves()
@@ -23,10 +23,10 @@ namespace PieceLibrary.Pieces
             base.GenerateMoves();
             // This is important for generating the new squares that the piece can move to
             int colorMultiplier = 1;
-            char currentFile = GetSquare()[0];
-            int currentRank = Convert.ToInt32(char.GetNumericValue(GetSquare()[1]));
+            char currentFile = Square[0];
+            int currentRank = Convert.ToInt32(char.GetNumericValue(Square[1]));
 
-            if (GetColor() == "Black")
+            if (Color == "Black")
             {
                 colorMultiplier *= -1;
             }
@@ -34,14 +34,14 @@ namespace PieceLibrary.Pieces
             // Normal Pawn Movement
             int newRank = currentRank + colorMultiplier * 1;
             string destSquare = $"{currentFile}{newRank}";
-            AddMove(new Move(GetSquare(), destSquare, this, false));
+            AddMove(new Move(Square, destSquare, this, false));
 
             if (firstMove) // The piece can move two squares if it is the first move
             {
                 newRank = currentRank + colorMultiplier * 2;
                 destSquare = $"{currentFile}{newRank}";
 
-                AddMove(new Move(GetSquare(), destSquare, this, false));
+                AddMove(new Move(Square, destSquare, this, false));
 
             }
 

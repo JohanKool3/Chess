@@ -11,7 +11,7 @@ namespace PieceLibrary.Pieces
     {
         public Queen(string color, string startSquare, LogicalBoard board) : base("Queen", color, startSquare, board)
         {
-            SetValue(9); // Queens are worth 9 points
+            Value = 9; // Queens are worth 9 points
         }
     }
 
