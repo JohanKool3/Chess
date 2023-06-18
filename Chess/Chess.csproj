@@ -11,8 +11,4 @@
     <ProjectReference Include="..\PieceLibrary\PieceLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pieces\" />
-  </ItemGroup>
-
 </Project>

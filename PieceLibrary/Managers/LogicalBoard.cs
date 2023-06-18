@@ -19,25 +19,28 @@ namespace PieceLibrary.Managers
 
         private void CreateBoard()
         {
-            List<string> ranks = new List<string>();
-            ranks.Add("A");
-            ranks.Add("B");
-            ranks.Add("C");
-            ranks.Add("D");
-            ranks.Add("E");
-            ranks.Add("F");
-            ranks.Add("G");
-            ranks.Add("H");
+            List<string> files = new List<string> {
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+                "F",
+                "G",
+                "H"
+            };
 
-            foreach(string file in ranks)
+            foreach(string file in files)
             {
                 foreach(int rank in Enumerable.Range(1, 8))
                 {
                     Contents.Add($"{file}{rank}", null);
                 }
+
             }
 
         }
+
         private void AddPiece(Piece newPiece, string key)
         {
             try

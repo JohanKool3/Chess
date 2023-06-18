@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PieceLibrary.Managers;
+﻿using PieceLibrary.Managers;
 
 namespace PieceLibrary.Pieces
 {
@@ -59,7 +53,7 @@ namespace PieceLibrary.Pieces
 
             // If the move puts the friendly king into check
 
-            else if(Board.GetPiece(move.EndSquare) is not null)
+            if (Board.GetPiece(move.EndSquare) is not null)
             {
                 if (Board.GetPiece(move.EndSquare).Color == Color)
                 {
@@ -72,7 +66,6 @@ namespace PieceLibrary.Pieces
                 }
 
             }
-
             return valid;
         }
 
