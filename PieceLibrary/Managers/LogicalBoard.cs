@@ -5,9 +5,8 @@ namespace PieceLibrary.Managers
 {
     partial class LogicalBoard
     {
-        private readonly Dictionary<string, Piece?> Contents = new Dictionary<string, Piece?>();
-
-        public Dictionary<string, Piece?> contents { get { return Contents; } }
+        private Dictionary<string, Piece?> contents = new Dictionary<string, Piece?>();
+        public Dictionary<string, Piece?> Contents { get { return contents; } }
         public List<Move> MoveOrder = new List<Move>();
 
         public LogicalBoard()
@@ -25,7 +24,7 @@ namespace PieceLibrary.Managers
 
         public void LoadMoves()
         {
-            foreach(var piece in Contents.Values)
+            foreach(var piece in contents.Values)
             {
                 if (piece != null)
                 {

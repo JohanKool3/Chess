@@ -1,10 +1,5 @@
-﻿using Microsoft.VisualBasic;
-using PieceLibrary.Pieces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PieceLibrary.Pieces;
+
 
 namespace PieceLibrary.Managers
 {
@@ -22,7 +17,7 @@ namespace PieceLibrary.Managers
                 {
                     string square = $"{file}{rank}"; //Creates the key of the square to be displayed
 
-                    Piece? piece = Contents[square]; // Fetches the contents of that square
+                    Piece? piece = contents[square]; // Fetches the contents of that square
                     string output = "";
 
                     // Adds readouts for the Ranks
@@ -54,7 +49,7 @@ namespace PieceLibrary.Managers
         {
             List<Piece> blackPieces = new List<Piece>();
 
-            foreach (Piece piece in Contents.Values)
+            foreach (Piece piece in contents.Values)
             {
                 if (piece != null)
                 {
@@ -72,7 +67,7 @@ namespace PieceLibrary.Managers
         public List<Piece> GetWhitePieces()
         {
             List<Piece> whitePieces = new List<Piece>();
-            foreach (Piece piece in Contents.Values)
+            foreach (Piece piece in contents.Values)
             {
                 if (piece != null)
                 {
@@ -89,7 +84,7 @@ namespace PieceLibrary.Managers
         {
             try
             {
-                return Contents[square];
+                return contents[square];
             }
             catch
             {
