@@ -11,14 +11,17 @@ namespace PieceLibrary.Managers
     public class LogicalBoard
     {
         private readonly Dictionary<string, Piece?> Contents = new Dictionary<string, Piece?>();
+
+        public Dictionary<string, Piece?> contents { get { return Contents; } }
+
         // Objects that will be responsible for material counts and checks later on in development
         private readonly Side WhitePieces = new Side("White");
         private readonly Side BlackPieces = new Side("Black");
-
         private List<Move> MoveOrder = new List<Move>();
 
         private void CreateBoard()
         {
+
             List<string> files = new List<string> {
                 "A",
                 "B",
@@ -40,7 +43,6 @@ namespace PieceLibrary.Managers
             }
 
         }
-
         private void AddPiece(Piece newPiece, string key)
         {
             try
@@ -57,9 +59,9 @@ namespace PieceLibrary.Managers
                     BlackPieces.AddPiece(newPiece);
                 }
             }
-            catch
+            catch (Exception e)
             {
-                Console.Write($"Key {key} is not compatible");
+                throw new Exception("Invalid key, key must be a valid square",e);
             }
         }
         private void PopulateBoard()
@@ -117,7 +119,6 @@ namespace PieceLibrary.Managers
             CreateBoard();
             PopulateBoard();
         }
-
         public static void CustomBoardSetup()
         {
             // This method will allow the user to create a custom board setup
@@ -242,5 +243,6 @@ namespace PieceLibrary.Managers
         {
             return MoveOrder;
         }
+
     }
 }
