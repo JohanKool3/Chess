@@ -9,7 +9,7 @@ namespace PieceLibrary.Managers
 {
     public class Side
     {
-        private readonly List<Piece> Pieces = new List<Piece>(); // Contents of the side
+        private List<Piece> Pieces = new List<Piece>(); // Contents of the side
         private readonly string Color; // Color of the side
         private Piece? King = null;
         public Side(string color)

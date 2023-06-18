@@ -16,7 +16,9 @@ namespace PieceLibrary.Managers
 
         // Objects that will be responsible for material counts and checks later on in development
         private readonly Side WhitePieces = new Side("White");
+        public Side returnWhitePieces { get { return WhitePieces; } }
         private readonly Side BlackPieces = new Side("Black");
+        public Side returnBlackPieces { get { return BlackPieces; } }
         private List<Move> MoveOrder = new List<Move>();
 
         private void CreateBoard()
