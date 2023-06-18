@@ -21,7 +21,8 @@ namespace PieceLibrary.Pieces
             /// </summary>
             ///
             base.GenerateMoves();
-            // This is important for generating the new squares that the piece can move to
+
+
             int colorMultiplier = 1;
             char currentFile = Square[0];
             int currentRank = Convert.ToInt32(char.GetNumericValue(Square[1]));

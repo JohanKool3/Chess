@@ -1,51 +1,35 @@
 ﻿using PieceLibrary.Managers;
+using PieceLibrary.Pieces;
 using Xunit;
 
 namespace ChessTests.TestManagers
 {
-    public class BoardTest
+    public class BoardTests
     {
         public LogicalBoard board = new LogicalBoard();
 
         [Fact]
-        public void TestBoardSquareCreation()
+        public void Test_Full_Board_Creation()
         {
             Assert.Equal(64, board.contents.Count);
         }
 
         [Fact]
-        public void TestBoardPieceAddition()
+        public void Test_Pawn_Creation()
         {
-            int count = 0;
-
-            foreach(var piece in board.contents)
-            {
-                if (piece.Value != null)
-                {
-                    count++;
-                }
-            }
-
-            Assert.Equal(32, count);
+            Assert.IsType<Pawn>(board.GetPiece("A2"));
         }
 
         [Fact]
-        public void TestBoardPieceRemoval()
+        public void Test_White_Piece_Creation()
         {
-            board.contents["A2"] = null;
-            board.contents["A7"] = null;
+            Assert.Equal(16, board.GetWhitePieces().Count);
+        }
 
-            int count = 0;
-
-            foreach (var piece in board.contents)
-            {
-                if (piece.Value != null)
-                {
-                    count++;
-                }
-            }
-
-            Assert.Equal(30, count);
+        [Fact]
+        public void Test_Black_Piece_Creation()
+        {
+            Assert.Equal(16, board.GetBlackPieces().Count);
         }
     }
 }
