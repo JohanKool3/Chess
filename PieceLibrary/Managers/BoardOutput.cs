@@ -85,6 +85,16 @@ namespace PieceLibrary.Managers
             return whitePieces;
         }
 
-        public Piece GetPiece(string square) => Contents[square] ?? throw new Exception("No piece found at that square");
+        public Piece? GetPiece(string square)
+        {
+            try
+            {
+                return Contents[square];
+            }
+            catch
+            {
+                throw new KeyNotFoundException($"Invalid key, key must be a valid square {square}");
+            }
+        }
     }
 }

@@ -42,7 +42,10 @@ namespace PieceLibrary.Pieces
 
             foreach (string newSquare in possibleMoves)
             {
-                AddMove(new Move(Square, newSquare, this, false));
+                if (newSquare.Length < 3 && Char.GetNumericValue(newSquare[1]) > 0 && Char.GetNumericValue(newSquare[1]) < 9 && newSquare[0] >= 'A' && newSquare[0] <= 'H')
+                {
+                    AddMove(new Move(Square, newSquare, this, false));
+                }
             }
 
 

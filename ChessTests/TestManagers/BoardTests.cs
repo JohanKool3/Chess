@@ -31,5 +31,28 @@ namespace ChessTests.TestManagers
         {
             Assert.Equal(16, board.GetBlackPieces().Count);
         }
+
+        [Fact]
+        public void Test_Board_Move_Load_Pawn()
+        {
+            board.LoadMoves();
+            Assert.Equal(2, board.GetPiece("A2").LegalMoves.Count);
+
+        }
+
+        [Fact]
+        public void Test_Board_Move_Load_Knight()
+        {
+            board.LoadMoves();
+            int count = board.GetPiece("B1").LegalMoves.Count;
+            Assert.Equal(2, board.GetPiece("B1").LegalMoves.Count);
+        }
+
+        [Fact]
+        public void Test_Board_Move_Load_Bishop()
+        {
+            board.LoadMoves();
+            Assert.Equal(0, board.GetPiece("C1").LegalMoves.Count);
+        }
     }
 }
