@@ -10,7 +10,7 @@ namespace PieceLibrary.Pieces
         public string Color { get; } // The color of the piece (either "White" or "Black")
         public string PieceCode { get; set; } // The code of the piece (format is "wK" for white king)
         protected int? Value { get; set; } // The material value of the given chess piece
-        protected string Square { get; set; } // The key of the square that the piece is on (using the notation of the board)
+        public string Square { get; set; } // The key of the square that the piece is on (using the notation of the board)
         private List<Move> legalMoves = new List<Move>(); // The moves that the piece can make that abide by the rules of chess
         public List<Move> LegalMoves { get { return legalMoves; } }
 

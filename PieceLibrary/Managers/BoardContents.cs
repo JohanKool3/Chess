@@ -89,5 +89,120 @@ namespace PieceLibrary.Managers
 
 
         }
+
+        private void PopulateBoard(string FENnotation)
+        {
+
+            if (FENvalidation(FENnotation))
+            {
+                List<string> _ = FENnotation.Split('/').ToList();
+
+                List<string> files = new List<string>
+            {
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+                "F",
+                "G",
+                "H"
+            };
+
+                Dictionary<char, Type> pieceTypeMappings = new Dictionary<char, Type>
+            {
+                {'K', typeof(King)},
+                {'Q', typeof(Queen)},
+                {'R', typeof(Rook)},
+                {'B', typeof(Bishop)},
+                {'N', typeof(Knight)},
+                {'P', typeof(Pawn)},
+                {'k', typeof(King)},
+                {'q', typeof(Queen)},
+                {'r', typeof(Rook)},
+                {'b', typeof(Bishop)},
+                {'n', typeof(Knight)},
+                {'p', typeof(Pawn)}
+            };
+
+                // For each row in the FEN notation
+                int _rowIndex = 0;
+                foreach (string row in _)
+                {
+                    int _squareIndex = 0;
+                    // For each square in the row
+                    foreach (char square in row)
+                    {
+                        if (Char.IsDigit(square))
+                        {
+                            // Skips the number of squares specified
+                            _squareIndex += Int32.Parse(square.ToString());
+                        }
+                        else
+                        {
+                            // Populate the board accordingly
+                            AddPiece((Piece)Activator.CreateInstance(pieceTypeMappings[square], new object[] { (Char.IsUpper(square) ? "White" : "Black"), $"{files[_squareIndex]}{8 - _rowIndex}", this }), $"{files[_squareIndex]}{8 - _rowIndex}");
+                        }
+                        _squareIndex++;
+                    }
+                    _rowIndex++;
+                }
+            }
+        }
+
+        private bool FENvalidation(string FENnotation)
+        {
+            List<string> _ = FENnotation.Split('/').ToList();
+            List<Char> legalCharacters = new List<Char>
+            {
+             'K', 'Q', 'R', 'B', 'N', 'P', 'k', 'q', 'r', 'b', 'n', 'p'
+            };
+
+
+            // Remove Illegal Characters
+            foreach (string _row in _)
+            {
+                foreach (char _square in _row)
+                {
+                    if (!Char.IsDigit(_square) && !legalCharacters.Contains(_square))
+                    {
+                        throw new Exception("Illegal Characters given in FEN notation");
+                    }
+                }
+            }
+
+            // Check if there are 8 rows
+            if (_.Count != 8)
+            {
+                throw new Exception("Invalid FEN notation");
+
+            }
+
+            // Check to make sure that none of the rows exceed 8 squares
+            foreach (string row in _)
+            {
+                int length = 0;
+                foreach (char _fenSquare in row)
+                {
+                    if (Char.IsDigit(_fenSquare))
+                    {
+                        // Add the number of squares specified
+                        length += Int32.Parse(_fenSquare.ToString());
+
+                    }
+                    else
+                    {
+                        // Normal increment if the square is a piece
+                        length++;
+                    }
+                }
+                if (length > 8)
+                {
+                    throw new Exception("FEN notation indicated more than 8 squares in a row");
+                }
+            }
+
+            return true;
+        }
     }
 }

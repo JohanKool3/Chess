@@ -16,10 +16,11 @@ namespace PieceLibrary.Managers
             PopulateBoard();
         }
 
-        public static void CustomBoardSetup()
+        public LogicalBoard(string FENnotation)
         {
-            // This method will allow the user to create a custom board setup
-            // This will be used for testing purposes
+            // Create the board
+            CreateBoard();
+            PopulateBoard(FENnotation);
         }
 
         public void LoadMoves()
