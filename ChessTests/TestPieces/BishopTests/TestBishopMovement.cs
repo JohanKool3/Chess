@@ -22,5 +22,12 @@ namespace ChessTests.TestPieces.BishopTests
 
         }
 
+        //[Fact]
+        //public void Test_Bishop_Moves()
+        //{
+        //    board.LoadMoves();
+        //    Assert.Equal(13, board.GetPiece(Square).LegalMoves.Count);
+        //}
+
     }
 }
