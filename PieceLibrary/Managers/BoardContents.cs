@@ -112,9 +112,10 @@ namespace PieceLibrary.Managers
         {
             if (FENvalidation(FENnotation))
             {
-                List<string> _ = FENnotation.Split('/').ToList();
+                #region Important Variables
+                List<string> _rows = FENnotation.Split('/').ToList();
 
-                List<string> files = new List<string>
+                List<string> _files = new ()
             {
                 "A",
                 "B",
@@ -126,55 +127,53 @@ namespace PieceLibrary.Managers
                 "H"
             };
 
-                Dictionary<char, Type> pieceTypeMappings = new Dictionary<char, Type>
+                Dictionary<char, Type> _pieceTypeMappings = new Dictionary<char, Type>
             {
-                {'K', typeof(King)},
+                {'K' , typeof(King)},
                 {'Q', typeof(Queen)},
                 {'R', typeof(Rook)},
                 {'B', typeof(Bishop)},
                 {'N', typeof(Knight)},
                 {'P', typeof(Pawn)},
-                {'k', typeof(King)},
-                {'q', typeof(Queen)},
-                {'r', typeof(Rook)},
-                {'b', typeof(Bishop)},
-                {'n', typeof(Knight)},
-                {'p', typeof(Pawn)}
             };
 
-                // For each row in the FEN notation
-                int _rowIndex = 0;
-                foreach (string row in _)
+                #endregion
+
+
+                // Rank starts at 8
+                int _rank = 8;
+                foreach (string row in _rows) // Scans each row from the initial notation input
                 {
-                    int _squareIndex = 0;
-                    // For each square in the row
-                    foreach (char square in row)
+                    int _fileIndex = 0; // Scans from File A -> H
+
+                    // For each instruction in the row
+                    foreach (char instruction in row)
                     {
-                        if (Char.IsDigit(square))
+                        if (Char.IsDigit(instruction))
                         {
                             // Skips the number of squares specified
-                            _squareIndex += Int32.Parse(square.ToString());
+                            _fileIndex += Int32.Parse(instruction.ToString());
                         }
                         else
                         {
+
                             // Populate the board accordingly
-                            string _colour = (Char.IsUpper(square))
+                            string _colour = (Char.IsUpper(instruction))
                                 ? "White"
                                 : "Black";
 
-                            Type _type = pieceTypeMappings[square];
+                            Type _type = _pieceTypeMappings[Char.ToUpper(instruction)];
 
                             if (Activator.CreateInstance(_type,
                                 _colour,
-                                $"{files[_squareIndex]}{8 - _rowIndex}",
+                                $"{_files[_fileIndex]}{_rank}",
                                 this) is Piece newPiece)
 
-                                AddPiece(newPiece, $"{files[_squareIndex]}{8 - _rowIndex}");
-
+                                AddPiece(newPiece, $"{_files[_fileIndex]}{_rank}");
+                            _fileIndex++;
                         }
-                        _squareIndex++;
                     }
-                    _rowIndex++;
+                    _rank--;
                 }
             }
         }

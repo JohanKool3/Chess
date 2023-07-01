@@ -2,7 +2,7 @@
 
 namespace PieceLibrary.Pieces
 {
-    internal class Bishop : Piece
+    public class Bishop : Piece
     {
         public Bishop(string color, string startSquare, LogicalBoard board) : base("Bishop", color, startSquare, board)
         {

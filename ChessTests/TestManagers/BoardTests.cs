@@ -21,20 +21,27 @@ namespace ChessTests.TestManagers
             string FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
             LogicalBoard board2 = new LogicalBoard(FEN);
 
+            int matches = 0;
             foreach (var content in board.Contents.Keys)
             {
-                if (board.Contents[content] != null)
+                var square1 = board.Contents[content];
+                var square2 = board2.Contents[content];
+                if (board.Contents[content] is null)
                 {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-                    if (board.Contents[content].GetType() != board2.Contents[content].GetType())
+                    if (square1 == null &&  square2 == null)
                     {
-                        Assert.False(true);
+                        matches++;
                     }
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                }
+
+                else if (square1.PieceCode == square2.PieceCode)
+                {
+                    matches++;
                 }
 
             }
-            Assert.True(true);
+
+            Assert.Equal(64, matches);
         }
 
         [Fact]
