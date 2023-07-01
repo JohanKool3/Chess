@@ -25,10 +25,12 @@ namespace ChessTests.TestManagers
             {
                 if (board.Contents[content] != null)
                 {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                     if (board.Contents[content].GetType() != board2.Contents[content].GetType())
                     {
                         Assert.False(true);
                     }
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
                 }
 
             }

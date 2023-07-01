@@ -11,7 +11,9 @@ namespace ChessTests.TestPieces.PawnTests
         {
             board.LoadMoves();
 
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             Assert.Equal(2, board.GetPiece("A2").LegalMoves.Count);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
         }
     }
