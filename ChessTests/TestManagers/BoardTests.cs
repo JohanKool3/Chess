@@ -6,7 +6,12 @@ namespace ChessTests.TestManagers
 {
     public class BoardTests
     {
-        public LogicalBoard board = new LogicalBoard();
+        public LogicalBoard board = new ();
+
+        private bool Test_Null_Board_Creation()
+        {
+            return board == null;
+        }
 
         [Fact]
         public void Test_Full_Board_Creation()
@@ -44,7 +49,6 @@ namespace ChessTests.TestManagers
         public void Test_Board_Move_Load_Knight()
         {
             board.LoadMoves();
-            int count = board.GetPiece("B1").LegalMoves.Count;
             Assert.Equal(2, board.GetPiece("B1").LegalMoves.Count);
         }
 
@@ -52,7 +56,7 @@ namespace ChessTests.TestManagers
         public void Test_Board_Move_Load_Bishop()
         {
             board.LoadMoves();
-            Assert.Equal(0, board.GetPiece("C1").LegalMoves.Count);
+            Assert.Empty(board.GetPiece("C1").LegalMoves);
         }
 
         [Fact]

@@ -4,6 +4,9 @@ namespace PieceLibrary.Managers
 {
     public partial class LogicalBoard
     {
+        /// <summary>
+        /// <para>Creates the Board and makes each square Null</para>
+        /// </summary>
         private void CreateBoard()
         {
 
@@ -28,6 +31,13 @@ namespace PieceLibrary.Managers
             }
 
         }
+
+        /// <summary>
+        /// Adds a piece otherwise throws an exception
+        /// </summary>
+        /// <param name="newPiece">The piece that is being added</param>
+        /// <param name="key">The square the piece will be located in</param>
+        /// <exception cref="Exception"></exception>
         private void AddPiece(Piece newPiece, string key)
         {
             try
@@ -39,6 +49,10 @@ namespace PieceLibrary.Managers
                 throw new Exception("Invalid key, key must be a valid square", e);
             }
         }
+
+        /// <summary>
+        /// <para> This method is used to populate the chess board with the standard starting position</para>
+        /// </summary>
         private void PopulateBoard()
         {
 
@@ -90,9 +104,12 @@ namespace PieceLibrary.Managers
 
         }
 
+        /// <summary>
+        /// <para> This method is used to import a position represented in FEN into the chess board</para>
+        /// <param name="FENnotation">A string representing the FEN notation of a chess board</param>
+        /// </summary>
         private void PopulateBoard(string FENnotation)
         {
-
             if (FENvalidation(FENnotation))
             {
                 List<string> _ = FENnotation.Split('/').ToList();
@@ -141,7 +158,19 @@ namespace PieceLibrary.Managers
                         else
                         {
                             // Populate the board accordingly
-                            AddPiece((Piece)Activator.CreateInstance(pieceTypeMappings[square], new object[] { (Char.IsUpper(square) ? "White" : "Black"), $"{files[_squareIndex]}{8 - _rowIndex}", this }), $"{files[_squareIndex]}{8 - _rowIndex}");
+                            string _colour = (Char.IsUpper(square))
+                                ? "White"
+                                : "Black";
+
+                            Type _type = pieceTypeMappings[square];
+
+                            if (Activator.CreateInstance(_type,
+                                _colour,
+                                $"{files[_squareIndex]}{8 - _rowIndex}",
+                                this) is Piece newPiece)
+
+                                AddPiece(newPiece, $"{files[_squareIndex]}{8 - _rowIndex}");
+
                         }
                         _squareIndex++;
                     }
@@ -150,6 +179,11 @@ namespace PieceLibrary.Managers
             }
         }
 
+        /// <summary>
+        /// <param name="FENnotation">Standardized notation of a given position</param>
+        /// <para></para>
+        /// <exception cref="Exception">Returns information about which part of the validation process went wrong</exception>
+        /// </summary>
         private bool FENvalidation(string FENnotation)
         {
             List<string> _ = FENnotation.Split('/').ToList();

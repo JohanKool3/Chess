@@ -16,11 +16,11 @@ namespace PieceLibrary.Managers
             PopulateBoard();
         }
 
-        public LogicalBoard(string FENnotation)
+        public LogicalBoard(string FENNotation)
         {
             // Create the board
             CreateBoard();
-            PopulateBoard(FENnotation);
+            PopulateBoard(FENNotation);
         }
 
         public void LoadMoves()

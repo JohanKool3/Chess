@@ -11,7 +11,7 @@ namespace PieceLibrary.Pieces
         public string PieceCode { get; set; } // The code of the piece (format is "wK" for white king)
         protected int? Value { get; set; } // The material value of the given chess piece
         public string Square { get; set; } // The key of the square that the piece is on (using the notation of the board)
-        private List<Move> legalMoves = new List<Move>(); // The moves that the piece can make that abide by the rules of chess
+        private List<Move> legalMoves = new (); // The moves that the piece can make that abide by the rules of chess
         public List<Move> LegalMoves { get { return legalMoves; } }
 
         private LogicalBoard Board; //Reference to the Board object
@@ -36,32 +36,44 @@ namespace PieceLibrary.Pieces
             return PieceCode;
         }
 
-        // Special Methods
+
+
+        /// <summary>
+        /// This method is used to Check moves to make sure that they are valid and can be added to the 'LegalMoves' list
+        /// </summary>
+        /// <param name="move">The move to be checked</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         private bool CheckValidMove(Move move)
         {
-            bool valid = true;
+            bool valid = true; // Move is Valid
 
             if(move == null)
             {
-                throw new ArgumentNullException("Null argument passed to CheckValidMove");
+                throw new ArgumentNullException($"Null argument passed to CheckValidMove ,Value:{move}");
             }
 
-            // If the move is out of bounds
-            if (move.EndSquare.Length > 2 || move.EndSquare[0] < 'A' || move.EndSquare[0] > 'H' || move.EndSquare[1] < '1' || move.EndSquare[1] > '8')
+            if (move.EndSquare.Length > 2  // The move is comprised of more than a rank and file
+                || move.EndSquare[0] < 'A' // If the move is out of the bounds of the Files
+                || move.EndSquare[0] > 'H'
+                || move.EndSquare[1] < '1' // If the move is out of the bounds of the Ranks
+                || move.EndSquare[1] > '8')
             {
-                valid = false;
+                return false;
             }
 
             // If the move puts the friendly king into check
 
-            if (Board.GetPiece(move.EndSquare) is not null)
+            if (Board?.GetPiece(move.EndSquare) is Piece piece)
             {
-                if (Board.GetPiece(move.EndSquare).Color == Color)
+                // If the move is blocked by a friendly piece
+                if (piece.Color == Color)
                 {
                     valid = false;
                 }
+
                 // If the move is blocked by an enemy piece and the move is not a capture
-                if (Board.GetPiece(move.EndSquare).Color != Color && !move.Capture)
+                if (piece.Color != Color && !move.Capture)
                 {
                     valid = false;
                 }

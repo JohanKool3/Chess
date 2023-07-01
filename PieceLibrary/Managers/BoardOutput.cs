@@ -47,9 +47,9 @@ namespace PieceLibrary.Managers
 
         public List<Piece> GetBlackPieces()
         {
-            List<Piece> blackPieces = new List<Piece>();
+            List<Piece> blackPieces = new ();
 
-            foreach (Piece piece in contents.Values)
+            foreach (Piece? piece in contents.Values)
             {
                 if (piece != null)
                 {
@@ -66,8 +66,8 @@ namespace PieceLibrary.Managers
 
         public List<Piece> GetWhitePieces()
         {
-            List<Piece> whitePieces = new List<Piece>();
-            foreach (Piece piece in contents.Values)
+            List<Piece> whitePieces = new ();
+            foreach (Piece? piece in contents.Values)
             {
                 if (piece != null)
                 {
