@@ -12,6 +12,7 @@ namespace ChessTests.TestPieces.KnightTests
     {
         private readonly LogicalBoard board = new("8/8/8/3N4/8/8/8/8");
         private const string Square = "D5";
+
         [Fact]
         public void Test_Knight_Moves()
         {
@@ -33,6 +34,14 @@ namespace ChessTests.TestPieces.KnightTests
             LogicalBoard _ = new("8/2P1P3/1P3P2/3N4/1P3P2/2P1P3/8/8");
             _.LoadMoves();
             Assert.Empty(_.GetPiece("D5").LegalMoves);
+        }
+
+        [Fact]
+        public void Test_Knight_Take_Cases()
+        {
+            LogicalBoard _ = new("8/2p1P3/1p3P2/3N4/1p3P2/2p1P3/8/8");
+            _.LoadMoves();
+            Assert.Equal(4, _.GetPiece("D5").TakingMoves.Count);
         }
     }
 }

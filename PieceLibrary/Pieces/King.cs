@@ -39,10 +39,14 @@ namespace PieceLibrary.Pieces
                     string newSquareString = helper.ConvertToString(newSquare);
 
                     // If the square is empty, add the move
-                    // TODO: Add check for if the square cane be attacked
-                    if (Board.GetPiece(newSquareString) == null)
+                    Piece? _ = Board.GetPiece(newSquareString);
+                    if (_ == null)
                     {
                         AddMove(new Move(Square, newSquareString, this, false));
+                    }
+                    else if(_?.Color != Color)
+                    {
+                        AddMove(new Move(Square, newSquareString, this, true));
                     }
                 }
             }

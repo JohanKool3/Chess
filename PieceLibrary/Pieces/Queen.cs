@@ -53,8 +53,15 @@ namespace PieceLibrary.Pieces
             while(helper.BoundsCheck(currentPosition))
             {
                 // Break out of the movement loop.
-                if(Board.GetPiece(helper.ConvertToString(currentPosition)) != null)
+                Piece? _ = Board.GetPiece(helper.ConvertToString(currentPosition));
+                if(_ != null)
                 {
+                    if(_.Color != Color)
+                    {
+                        possibleMoves.Add(new Move(Square,
+                            helper.ConvertToString(currentPosition),
+                                this, true));
+                    }
                     break;
                 }
 

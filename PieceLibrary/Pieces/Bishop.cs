@@ -44,9 +44,15 @@ namespace PieceLibrary.Pieces
             while (helper.BoundsCheck(currentPosition))
             {
                 // Break out of the movement loop.
-                //TODO: Add logic to check if the piece is an enemy piece
-                if(Board.GetPiece(helper.ConvertToString(currentPosition)) != null)
+                Piece? _ = Board.GetPiece(helper.ConvertToString(currentPosition));
+                if(_ != null)
                 {
+                    if(_.Color != Color)
+                    {
+                        possibleMoves.Add(new Move(Square,
+                        helper.ConvertToString(currentPosition),
+                        this, true));
+                    }
                     break;
                 }
                 possibleMoves.Add(new Move(Square,

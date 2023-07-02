@@ -17,7 +17,7 @@ namespace PieceLibrary.Pieces
             int[] currentPosition = helper.ConvertToIntegers(Square);
 
             // This is a list of all the possible moves that a knight can make
-            List<int[]> possibleMoves = new ()
+            List<int[]> possibleMoves = new()
             {
                 new [] {currentPosition[0] + 1, currentPosition[1] + 2}, // Up to the Right
                 new [] {currentPosition[0] - 1, currentPosition[1] + 2}, // Up to the Left
@@ -38,13 +38,25 @@ namespace PieceLibrary.Pieces
                 // If the new square is on the board, add it to the list of legal moves
                 if (helper.BoundsCheck(newSquare))
                 {
-                    AddMove(new Move(Square,
-                        helper.ConvertToString(newSquare),
-                        this, false));
+                    Piece? _ = Board.GetPiece(helper.ConvertToString(newSquare));
+
+                    if (_ != null && _.Color != Color)
+                    {
+                        // If the square is occupied by an enemy piece, add it to the list of legal moves
+                        AddMove(new Move(Square,
+                            helper.ConvertToString(newSquare),
+                                this, true));
+                    }
+                    else
+                    {
+                        AddMove(new Move(Square,
+                            helper.ConvertToString(newSquare),
+                                this, false));
+                    }
                 }
+
+
             }
-
-
         }
     }
 }

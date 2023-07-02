@@ -14,6 +14,21 @@ namespace PieceLibrary.Pieces
         protected List<Move> legalMoves = new (); // The moves that the piece can make that abide by the rules of chess
         public List<Move> LegalMoves { get { return legalMoves; } }
 
+        public List<Move> TakingMoves
+        {
+            get
+            {   List<Move> output = new();
+                foreach(Move move in LegalMoves)
+                {
+                    if(move.Capture)
+                    {
+                        output.Add(move);
+                    }
+                }
+                return output;
+            }
+        }
+
         protected readonly Helper helper = new();
         protected LogicalBoard Board; //Reference to the Board object
 
@@ -91,7 +106,7 @@ namespace PieceLibrary.Pieces
             }
         }
 
-        public void AddMove(Move move)
+        protected void AddMove(Move move)
         {
             if (CheckValidMove(move))
             {
