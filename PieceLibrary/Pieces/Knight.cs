@@ -19,17 +19,17 @@ namespace PieceLibrary.Pieces
             // This is a list of all the possible moves that a knight can make
             List<int[]> possibleMoves = new ()
             {
-                new int[] {currentPosition[0] + 1, currentPosition[1] + 2}, // Up to the Right
-                new int[] {currentPosition[0] - 1, currentPosition[1] + 2}, // Up to the Left
+                new [] {currentPosition[0] + 1, currentPosition[1] + 2}, // Up to the Right
+                new [] {currentPosition[0] - 1, currentPosition[1] + 2}, // Up to the Left
 
-                new int[] {currentPosition[0] + 1, currentPosition[1] - 2}, // Down to the Right
-                new int[] {currentPosition[0] - 1, currentPosition[1] - 2}, // Down to the Left
+                new [] {currentPosition[0] + 1, currentPosition[1] - 2}, // Down to the Right
+                new [] {currentPosition[0] - 1, currentPosition[1] - 2}, // Down to the Left
 
-                new int[] {currentPosition[0] + 2, currentPosition[1] + 1}, // Right then Up
-                new int[] {currentPosition[0] + 2, currentPosition[1] - 1}, // Right then down
+                new [] {currentPosition[0] + 2, currentPosition[1] + 1}, // Right then Up
+                new [] {currentPosition[0] + 2, currentPosition[1] - 1}, // Right then down
 
-                new int[] {currentPosition[0] - 2, currentPosition[1] + 1}, // Left then Up
-                new int[] {currentPosition[0] - 2, currentPosition[1] - 1}, // Left then Down
+                new [] {currentPosition[0] - 2, currentPosition[1] + 1}, // Left then Up
+                new [] {currentPosition[0] - 2, currentPosition[1] - 1}, // Left then Down
             };
 
             foreach (int[] newSquare in possibleMoves)

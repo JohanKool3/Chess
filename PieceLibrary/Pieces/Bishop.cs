@@ -14,10 +14,10 @@ namespace PieceLibrary.Pieces
             base.GenerateMoves();
 
             List<int[]> _allDirections = new(){
-                new int[] {1, 1},
-                new int[] {1, -1},
-                new int[] {-1, 1},
-                new int[] {-1, -1}
+                new [] {1, 1},
+                new [] {1, -1},
+                new [] {-1, 1},
+                new [] {-1, -1}
             };
 
             foreach (int[] direction in _allDirections)

@@ -20,19 +20,19 @@ namespace PieceLibrary.Pieces
 
             List<int[]> directions = new ()
             {
-                new int[] { 1, 1 },
-                new int[] { 1, 0 },
-                new int[] { 1, -1 },
-                new int[] { 0, 1 },
-                new int[] { 0, -1 },
-                new int[] { -1, 1 },
-                new int[] { -1, 0 },
-                new int[] { -1, -1 }
+                new [] { 1, 1 },
+                new [] { 1, 0 },
+                new [] { 1, -1 },
+                new [] { 0, 1 },
+                new [] { 0, -1 },
+                new [] { -1, 1 },
+                new [] { -1, 0 },
+                new [] { -1, -1 }
             };
 
             foreach (int[] direction in directions)
             {
-                int[] newSquare = new int[] { currentSquare[0] + direction[0], currentSquare[1] + direction[1] };
+                int[] newSquare = new [] { currentSquare[0] + direction[0], currentSquare[1] + direction[1] };
 
                 if (helper.BoundsCheck(newSquare))
                 {
