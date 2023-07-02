@@ -5,7 +5,7 @@ namespace ChessTests.TestPieces
 {
     public class TestKnightGeneral
     {
-        private readonly LogicalBoard board = new ();
+        private readonly LogicalBoard board = new ("8/8/8/3N4/8/8/8/8");
         private const string Square = "D5";
 
         [Fact]
