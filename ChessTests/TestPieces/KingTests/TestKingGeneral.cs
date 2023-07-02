@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessTests.TestPieces
 {
-    internal class TestRook
+    internal class TestKingGeneral
     {
     }
 }
