@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PieceLibrary", "PieceLibrary\PieceLibrary.csproj", "{62E0B233-03C9-43E3-8082-7FEF655DE640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.PieceLibrary", "PieceLibrary\Chess.PieceLibrary.csproj", "{62E0B233-03C9-43E3-8082-7FEF655DE640}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessTests", "ChessTests\ChessTests.csproj", "{EBB158D1-1996-4002-ABF8-2AEC723DDD61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Tests", "ChessTests\Chess.Tests.csproj", "{EBB158D1-1996-4002-ABF8-2AEC723DDD61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Gui", "Chess.Gui\Chess.Gui.csproj", "{D4B4CE36-1A63-49E0-A046-BC22946453FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Gui", "Chess.Gui\Chess.Gui.csproj", "{D4B4CE36-1A63-49E0-A046-BC22946453FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
