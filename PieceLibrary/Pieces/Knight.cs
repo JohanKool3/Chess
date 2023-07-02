@@ -14,33 +14,33 @@ namespace PieceLibrary.Pieces
         {
             // Wipes moves from the Legal Moves List
             base.GenerateMoves();
-
-            char currentFile = Square[0];
-            int currentRank = Convert.ToInt32(char.GetNumericValue(Square[1]));
+            int[] currentPosition = helper.ConvertToIntegers(Square);
 
             // This is a list of all the possible moves that a knight can make
-
-            List<string> possibleMoves = new List<string>()
+            List<int[]> possibleMoves = new ()
             {
-                $"{(char)(currentFile + 1)}{currentRank + 2}", // Up to the Right
-                $"{(char)(currentFile - 1)}{currentRank + 2}", // Up to the Left
+                new int[] {currentPosition[0] + 1, currentPosition[1] + 2}, // Up to the Right
+                new int[] {currentPosition[0] - 1, currentPosition[1] + 2}, // Up to the Left
 
-                $"{(char)(currentFile + 1)}{currentRank - 2}", // Down to the Right
-                $"{(char)(currentFile - 1)}{currentRank - 2}", // Down to the Left
+                new int[] {currentPosition[0] + 1, currentPosition[1] - 2}, // Down to the Right
+                new int[] {currentPosition[0] - 1, currentPosition[1] - 2}, // Down to the Left
 
-                $"{(char)(currentFile + 2)}{currentRank + 1}", // Right then Up
-                $"{(char)(currentFile + 2)}{currentRank - 1}", // Right then down
+                new int[] {currentPosition[0] + 2, currentPosition[1] + 1}, // Right then Up
+                new int[] {currentPosition[0] + 2, currentPosition[1] - 1}, // Right then down
 
-                $"{(char)(currentFile - 2)}{currentRank + 1}", // Left then Up
-                $"{(char)(currentFile - 2)}{currentRank - 1}", // Left then Down
+                new int[] {currentPosition[0] - 2, currentPosition[1] + 1}, // Left then Up
+                new int[] {currentPosition[0] - 2, currentPosition[1] - 1}, // Left then Down
             };
 
-            foreach (string newSquare in possibleMoves)
+            foreach (int[] newSquare in possibleMoves)
             {
+
                 // If the new square is on the board, add it to the list of legal moves
-                if (newSquare.Length < 3 && Char.GetNumericValue(newSquare[1]) > 0 && Char.GetNumericValue(newSquare[1]) < 9 && newSquare[0] >= 'A' && newSquare[0] <= 'H')
+                if (helper.BoundsCheck(newSquare))
                 {
-                    AddMove(new Move(Square, newSquare, this, false));
+                    AddMove(new Move(Square,
+                        helper.ConvertToString(newSquare),
+                        this, false));
                 }
             }
 

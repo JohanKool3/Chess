@@ -34,7 +34,7 @@ namespace ChessTests.TestManagers
                     }
                 }
 
-                else if (square1.PieceCode == square2.PieceCode)
+                else if (square1?.PieceCode == square2?.PieceCode)
                 {
                     matches++;
                 }

@@ -24,8 +24,7 @@ namespace PieceLibrary.Pieces
 
 
             int colorMultiplier = 1;
-            char currentFile = Square[0];
-            int currentRank = Convert.ToInt32(char.GetNumericValue(Square[1]));
+            int[] currentPosition = helper.ConvertToIntegers(Square);
 
             if (Color == "Black")
             {
@@ -33,16 +32,17 @@ namespace PieceLibrary.Pieces
             }
 
             // Normal Pawn Movement
-            int newRank = currentRank + colorMultiplier * 1;
-            string destSquare = $"{currentFile}{newRank}";
-            AddMove(new Move(Square, destSquare, this, false));
+            currentPosition[1] += colorMultiplier * 1;
+            AddMove(new Move(Square,
+                helper.ConvertToString(currentPosition),
+                this, false));
 
             if (firstMove) // The piece can move two squares if it is the first move
             {
-                newRank = currentRank + colorMultiplier * 2;
-                destSquare = $"{currentFile}{newRank}";
-
-                AddMove(new Move(Square, destSquare, this, false));
+                currentPosition[1] += colorMultiplier * 1;
+                AddMove(new Move(Square,
+                    helper.ConvertToString(currentPosition),
+                    this, false));
 
             }
 

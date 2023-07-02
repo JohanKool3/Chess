@@ -7,6 +7,8 @@ namespace PieceLibrary.Managers
         /// <summary>
         /// <para>Creates the Board and makes each square Null</para>
         /// </summary>
+        private readonly Helper constants = new ();
+
         private void CreateBoard()
         {
 
@@ -115,17 +117,7 @@ namespace PieceLibrary.Managers
                 #region Important Variables
                 List<string> _rows = FENnotation.Split('/').ToList();
 
-                List<string> _files = new ()
-            {
-                "A",
-                "B",
-                "C",
-                "D",
-                "E",
-                "F",
-                "G",
-                "H"
-            };
+                List<string> _files = constants.Files;
 
                 Dictionary<char, Type> _pieceTypeMappings = new Dictionary<char, Type>
             {

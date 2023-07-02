@@ -80,7 +80,7 @@ namespace PieceLibrary.Managers
             return whitePieces;
         }
 
-        public Piece? GetPiece(string square)
+        public Piece GetPiece(string square)
         {
             try
             {

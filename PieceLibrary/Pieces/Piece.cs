@@ -14,7 +14,8 @@ namespace PieceLibrary.Pieces
         private List<Move> legalMoves = new (); // The moves that the piece can make that abide by the rules of chess
         public List<Move> LegalMoves { get { return legalMoves; } }
 
-        private LogicalBoard Board; //Reference to the Board object
+        public readonly Helper helper = new();
+        public LogicalBoard Board; //Reference to the Board object
 
         // Constructor
         protected Piece(string piece, string color, string startSquare, LogicalBoard board)

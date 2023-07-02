@@ -5,9 +5,9 @@ namespace PieceLibrary.Managers
 {
     partial class LogicalBoard
     {
-        private Dictionary<string, Piece?> contents = new Dictionary<string, Piece?>();
+        private Dictionary<string, Piece?> contents = new ();
         public Dictionary<string, Piece?> Contents { get { return contents; } }
-        public List<Move> MoveOrder = new List<Move>();
+        public List<Move> MoveOrder = new ();
 
         public LogicalBoard()
         {
