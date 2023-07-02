@@ -6,7 +6,7 @@ namespace ChessTests.TestManagers
 {
     public class BoardTests
     {
-        public LogicalBoard board = new ();
+        private readonly LogicalBoard board = new ();
 
 
         [Fact]

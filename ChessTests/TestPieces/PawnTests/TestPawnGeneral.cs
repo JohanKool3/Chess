@@ -11,7 +11,7 @@ namespace ChessTests.TestPieces.PawnTests
 {
     public class TestPawnGeneral
     {
-        public LogicalBoard board = new ();
+        private readonly LogicalBoard board = new ();
 
         [Fact]
         public void TestWhitePawnCreation()

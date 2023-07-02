@@ -5,7 +5,7 @@ namespace ChessTests.TestPieces.PawnTests
 {
     public class TestPawnMovement
     {
-        public LogicalBoard board = new ();
+        private readonly LogicalBoard board = new ();
         [Fact]
         public void Test_Board_Move_Load_Pawn()
         {
