@@ -20,18 +20,14 @@ namespace PieceLibrary.Pieces
                 new int[] {-1, -1}
             };
 
-
-            List<Move> possibleMoves = new();
-
             foreach (int[] direction in _allDirections)
             {
                 List<Move> moves = GetMoves(direction);
-                possibleMoves.AddRange(moves);
-            }
 
-            foreach(Move move in possibleMoves)
-            {
-                AddMove(move);
+                foreach(Move move in moves)
+                {
+                    AddMove(move);
+                }
             }
         }
 
