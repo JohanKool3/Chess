@@ -12,7 +12,7 @@ namespace PieceLibrary.Managers
         private void CreateBoard()
         {
 
-            List<string> files = new List<string> {
+            List<string> files = new () {
                 "A",
                 "B",
                 "C",
@@ -160,8 +160,10 @@ namespace PieceLibrary.Managers
                                 _colour,
                                 $"{_files[_fileIndex]}{_rank}",
                                 this) is Piece newPiece)
+                            {
 
                                 AddPiece(newPiece, $"{_files[_fileIndex]}{_rank}");
+                            }
                             _fileIndex++;
                         }
                     }

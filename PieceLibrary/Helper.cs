@@ -31,7 +31,7 @@ namespace PieceLibrary
             int fileNum = Files.IndexOf(square[0].ToString()) + 1;
             int rank = Convert.ToInt32(char.GetNumericValue(square[1]));
 
-            int[] output = new int[] { fileNum, rank };
+            int[] output = new [] { fileNum, rank };
 
             return output;
         }
