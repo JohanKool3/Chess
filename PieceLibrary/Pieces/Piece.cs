@@ -112,8 +112,8 @@ namespace PieceLibrary.Pieces
 
             else if (move.Capture) // Capture a Piece
             {
-                Board.RemovePiece(move.EndSquare);
                 Board.CalculateMaterial(move);
+                Board.RemovePiece(move.EndSquare);
 
                 Square = move.EndSquare;
                 Board.MoveOrder.Add(move);

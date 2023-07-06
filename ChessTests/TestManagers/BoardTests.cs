@@ -57,5 +57,11 @@ namespace ChessTests.TestManagers
             string FEN = "rnbqkbnr/pppppppp/9/8/8/8/PPPPPPPP/RNBQKBNRR";
             Assert.Throws<Exception>(() => new LogicalBoard(FEN));
         }
+
+        [Fact]
+        public void Test_Correct_Material_Calculation()
+        {
+            Assert.Equal(board.Material, new int[] {39, 39});
+        }
     }
 }

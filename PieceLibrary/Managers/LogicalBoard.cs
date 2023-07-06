@@ -15,6 +15,7 @@ namespace PieceLibrary.Managers
             // Create the board
             CreateBoard();
             PopulateBoard();
+            CalculateMaterial();
         }
 
         public LogicalBoard(string FENNotation)
