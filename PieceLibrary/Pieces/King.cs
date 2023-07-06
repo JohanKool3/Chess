@@ -39,12 +39,12 @@ namespace PieceLibrary.Pieces
                     string newSquareString = helper.ConvertToString(newSquare);
 
                     // If the square is empty, add the move
-                    Piece? _ = Board.GetPiece(newSquareString);
-                    if (_ == null)
+                    Piece? _squareContents = Board.GetPiece(newSquareString);
+                    if (_squareContents == null)
                     {
                         AddMove(new Move(Square, newSquareString, this, false));
                     }
-                    else if(_?.Color != Color)
+                    else if(_squareContents?.Color != Color)
                     {
                         AddMove(new Move(Square, newSquareString, this, true));
                     }

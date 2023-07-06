@@ -7,23 +7,12 @@ namespace PieceLibrary.Managers
         /// <summary>
         /// <para>Creates the Board and makes each square Null</para>
         /// </summary>
-        private readonly Helper constants = new ();
+        private readonly Helper helper = new ();
 
         private void CreateBoard()
         {
 
-            List<string> files = new () {
-                "A",
-                "B",
-                "C",
-                "D",
-                "E",
-                "F",
-                "G",
-                "H"
-            };
-
-            foreach (string file in files)
+            foreach (string file in helper.Files)
             {
                 foreach (int rank in Enumerable.Range(1, 8))
                 {
@@ -48,7 +37,19 @@ namespace PieceLibrary.Managers
             }
             catch (Exception e)
             {
-                throw new Exception("Invalid key, key must be a valid square", e);
+                throw new KeyNotFoundException("Invalid key, key must be a valid square", e);
+            }
+        }
+
+        public void RemovePiece(string key)
+        {
+            try
+            {
+                Contents[key] = null;
+            }
+            catch (Exception e)
+            {
+                throw new KeyNotFoundException("Invalid key, key must be a valid square", e);
             }
         }
 
@@ -57,9 +58,9 @@ namespace PieceLibrary.Managers
         /// </summary>
         private void PopulateBoard()
         {
-
+            #region Hard Coded Piece Placements
             // White Pawns
-            for (char file = 'A'; file <= 'H'; file++)
+            foreach (string file in helper.Files)
             {
                 AddPiece(new Pawn("White", $"{file}2", this), $"{file}2");
             }
@@ -82,7 +83,7 @@ namespace PieceLibrary.Managers
 
 
             // Black Pawns
-            for (char file = 'A'; file <= 'H'; file++)
+            foreach (string file in helper.Files)
             {
                 AddPiece(new Pawn("Black", $"{file}7", this), $"{file}7");
             }
@@ -101,8 +102,7 @@ namespace PieceLibrary.Managers
             // Black Royalty
             AddPiece(new Queen("Black", "D8", this), "D8");
             AddPiece(new King("Black", "E8", this), "E8");
-
-
+            #endregion
 
         }
 
@@ -116,10 +116,8 @@ namespace PieceLibrary.Managers
             {
                 #region Important Variables
                 List<string> _rows = FENnotation.Split('/').ToList();
-
-                List<string> _files = constants.Files;
-
-                Dictionary<char, Type> _pieceTypeMappings = new Dictionary<char, Type>
+                List<string> _files = helper.Files;
+                Dictionary<char, Type> _pieceTypeMappings = new ()
             {
                 {'K' , typeof(King)},
                 {'Q', typeof(Queen)},
@@ -130,7 +128,6 @@ namespace PieceLibrary.Managers
             };
 
                 #endregion
-
 
                 // Rank starts at 8
                 int _rank = 8;
@@ -177,10 +174,10 @@ namespace PieceLibrary.Managers
         /// <para></para>
         /// <exception cref="Exception">Returns information about which part of the validation process went wrong</exception>
         /// </summary>
-        private bool FENvalidation(string FENnotation)
+        private static bool FENvalidation(string FENnotation)
         {
             List<string> _ = FENnotation.Split('/').ToList();
-            List<Char> legalCharacters = new List<Char>
+            List<Char> legalCharacters = new ()
             {
              'K', 'Q', 'R', 'B', 'N', 'P', 'k', 'q', 'r', 'b', 'n', 'p'
             };

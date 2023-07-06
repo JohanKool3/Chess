@@ -9,7 +9,7 @@ namespace PieceLibrary.Pieces
         ///</summary>
         public string Color { get; } // The color of the piece (either "White" or "Black")
         public string PieceCode { get; set; } // The code of the piece (format is "wK" for white king)
-        protected int? Value { get; set; } // The material value of the given chess piece
+        public int? Value { get; set; } // The material value of the given chess piece
         public string Square { get; set; } // The key of the square that the piece is on (using the notation of the board)
         protected List<Move> legalMoves = new (); // The moves that the piece can make that abide by the rules of chess
         public List<Move> LegalMoves { get { return legalMoves; } }
@@ -51,8 +51,6 @@ namespace PieceLibrary.Pieces
         {
             return PieceCode;
         }
-
-
 
         /// <summary>
         /// This method is used to Check moves to make sure that they are valid and can be added to the 'LegalMoves' list
@@ -99,10 +97,26 @@ namespace PieceLibrary.Pieces
         }
 
         public virtual void MovePiece(Move move)
-        { // This method is purely to update the attributes inside of the piece, Board updates will be done inside of the 'LogicalBoard' object
-            if (LegalMoves.Contains(move))
+        {
+            // If the move isn't legal
+            if (LegalMoves.Contains(move) is false)
             {
-                Square = move.EndSquare; // Sets the square of the piece to the destination square
+                return;
+            }
+
+            else if (move.Capture is false) // Normal Movement
+            {
+                Square = move.EndSquare;
+                Board.MoveOrder.Add(move);
+            }
+
+            else if (move.Capture) // Capture a Piece
+            {
+                Board.RemovePiece(move.EndSquare);
+                Board.CalculateMaterial(move);
+
+                Square = move.EndSquare;
+                Board.MoveOrder.Add(move);
             }
         }
 
