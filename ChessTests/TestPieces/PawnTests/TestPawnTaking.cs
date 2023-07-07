@@ -8,6 +8,18 @@ namespace ChessTests.TestPieces.PawnTests
     {
         private readonly LogicalBoard board = new("8/8/8/8/3p4/2P5/8/8");
 
+        private static Move? FindTakingMove(Piece pieceIn, string endSquare)
+        {
+            foreach (Move move in pieceIn.LegalMoves)
+            {
+                if (move.EndSquare == endSquare)
+                {
+                    return move;
+                }
+            }
+            return null;
+        }
+
         [Fact]
         public void Test_White_Pawn_Move_Generation_With_Take()
         {
@@ -24,7 +36,7 @@ namespace ChessTests.TestPieces.PawnTests
             Piece? pawn = board.Contents["C3"];
             List<Move> moves = pawn.LegalMoves;
 
-            Assert.Equal("D4", moves[2].EndSquare);
+            Assert.Equal("D4", FindTakingMove(pawn, "D4").EndSquare);
         }
 
         [Fact]
@@ -32,7 +44,7 @@ namespace ChessTests.TestPieces.PawnTests
         {
             board.LoadMoves();
             Piece? pawn = board.Contents["C3"];
-            Move takingMove = pawn.LegalMoves[2];
+            Move takingMove = FindTakingMove(pawn, "D4");
             pawn.MovePiece(takingMove);
             Assert.Equal("D4", pawn.Square);
 
@@ -43,7 +55,7 @@ namespace ChessTests.TestPieces.PawnTests
         {
             board.LoadMoves();
             Piece? pawn = board.Contents["C3"];
-            Move takingMove = pawn.LegalMoves[2];
+            Move takingMove = FindTakingMove(pawn, "D4");
             pawn.MovePiece(takingMove);
             Assert.Equal(0, board.Material[1]);
         }
