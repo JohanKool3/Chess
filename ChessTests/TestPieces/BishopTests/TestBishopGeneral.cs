@@ -9,7 +9,7 @@ namespace ChessTests.TestPieces
         [Fact]
         public void Test_Board_Move_Load_Bishop()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Assert.Empty(board.GetPiece("C1").LegalMoves);
         }
 

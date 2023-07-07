@@ -25,7 +25,7 @@ namespace Chess.Tests.TestPieces.RookTests
         [Fact]
         public void Test_White_Rook_Move_Generation_With_Take()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? rook = board.Contents[startSquare];
             List<Move> moves = rook.LegalMoves;
             Assert.Equal(13, moves.Count);
@@ -34,7 +34,7 @@ namespace Chess.Tests.TestPieces.RookTests
         [Fact]
         public void Test_White_Rook_Taking_Move_Exists()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? rook = board.Contents[startSquare];
 
             Assert.Equal(destinationSquare, FindTakingMove(rook, destinationSquare)?.EndSquare);
@@ -43,7 +43,7 @@ namespace Chess.Tests.TestPieces.RookTests
         [Fact]
         public void Test_White_Rook_Taking_Move_To_Right_Square()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? rook = board.Contents[startSquare];
             Move? takingMove = FindTakingMove(rook, destinationSquare);
             rook.MovePiece(takingMove);
@@ -54,7 +54,7 @@ namespace Chess.Tests.TestPieces.RookTests
         [Fact]
         public void Test_White_Rook_Taking_Material_Update()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? rook = board.Contents[startSquare];
             Move? takingMove = FindTakingMove(rook, destinationSquare);
             rook.MovePiece(takingMove);

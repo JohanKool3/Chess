@@ -61,7 +61,7 @@ namespace ChessTests.TestManagers
         [Fact]
         public void Test_Correct_Material_Calculation()
         {
-            Assert.Equal(board.Material, new int[] {39, 39});
+            Assert.Equal(board.Material, new [] {39, 39});
         }
     }
 }

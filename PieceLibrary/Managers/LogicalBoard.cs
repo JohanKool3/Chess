@@ -10,6 +10,9 @@ namespace PieceLibrary.Managers
         public List<Move> MoveOrder = new ();
         public int[] Material = new int[2] {0, 0}; // 0 = White, 1 = Black
 
+        /// <summary>
+        /// Creates the board without having a FEN notation string given.
+        /// </summary>
         public LogicalBoard()
         {
             // Create the board
@@ -18,6 +21,10 @@ namespace PieceLibrary.Managers
             CalculateMaterial();
         }
 
+        /// <summary>
+        /// Creates a board from a FEN notation string.
+        /// </summary>
+        /// <param name="FENNotation"></param>
         public LogicalBoard(string FENNotation)
         {
             // Create the board
@@ -26,15 +33,15 @@ namespace PieceLibrary.Managers
             CalculateMaterial();
         }
 
-        public void LoadMoves()
+
+        /// <summary>
+        /// Updates the board with current moves and also performs a check to see if the king is in check, checkmate or stalemate.
+        /// </summary>
+        public void UpdateBoard()
         {
-            foreach(var piece in contents.Values)
-            {
-                piece?.GenerateMoves();
+            LoadMoves();
 
-            }
         }
-
         /// <summary>
         /// Calculates all of the material in the board.
         /// </summary>
@@ -81,6 +88,15 @@ namespace PieceLibrary.Managers
             else
             {
                 Material[0] -= takenPieceValue;
+            }
+        }
+
+        private void LoadMoves()
+        {
+            foreach (var piece in contents.Values)
+            {
+                piece?.GenerateMoves();
+
             }
         }
 

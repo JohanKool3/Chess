@@ -25,7 +25,7 @@ namespace Chess.Tests.TestPieces.QueenTests
         [Fact]
         public void Test_White_Queen_Move_Generation_With_Take()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? queen = board.Contents[startSquare];
             List<Move> moves = queen.LegalMoves;
             Assert.Equal(24, moves.Count);
@@ -34,7 +34,7 @@ namespace Chess.Tests.TestPieces.QueenTests
         [Fact]
         public void Test_White_Queen_Taking_Move_Exists()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? queen = board.Contents[startSquare];
 
             Assert.Equal(destinationSquare, FindTakingMove(queen, destinationSquare)?.EndSquare);
@@ -43,7 +43,7 @@ namespace Chess.Tests.TestPieces.QueenTests
         [Fact]
         public void Test_White_Queen_Taking_Move_To_Right_Square()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? queen = board.Contents[startSquare];
             Move? takingMove = FindTakingMove(queen, destinationSquare);
             queen.MovePiece(takingMove);
@@ -54,7 +54,7 @@ namespace Chess.Tests.TestPieces.QueenTests
         [Fact]
         public void Test_White_Queen_Taking_Material_Update()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? queen = board.Contents[startSquare];
             Move? takingMove = FindTakingMove(queen, destinationSquare);
             queen.MovePiece(takingMove);

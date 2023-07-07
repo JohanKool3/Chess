@@ -22,7 +22,7 @@ namespace Chess.Tests.TestPieces.BishopTests
         [Fact]
         public void Test_White_Bishop_Move_Generation_With_Take()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? bishop = board.Contents["C4"];
             List<Move> moves = bishop.LegalMoves;
             Assert.Equal(8, moves.Count);
@@ -31,7 +31,7 @@ namespace Chess.Tests.TestPieces.BishopTests
         [Fact]
         public void Test_White_Bishop_Taking_Move_Exists()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? bishop = board.Contents["C4"];
 
             Assert.Equal("D5", FindTakingMove(bishop)?.EndSquare);
@@ -40,7 +40,7 @@ namespace Chess.Tests.TestPieces.BishopTests
         [Fact]
         public void Test_White_Bishop_Taking_Move_To_Right_Square()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? bishop = board.Contents["C4"];
             Move? takingMove = FindTakingMove(bishop);
             bishop.MovePiece(takingMove);
@@ -51,7 +51,7 @@ namespace Chess.Tests.TestPieces.BishopTests
         [Fact]
         public void Test_White_Bishop_Taking_Material_Update()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? bishop = board.Contents["C4"];
             Move? takingMove = FindTakingMove(bishop);
             bishop.MovePiece(takingMove);

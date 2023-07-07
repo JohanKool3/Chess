@@ -30,7 +30,7 @@ namespace Chess.Tests.TestPieces.KingTests
         [Fact]
         public void Test_White_King_Move_Generation_With_Take()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? king = board.Contents[startSquare];
             List<Move> moves = king.LegalMoves;
             Assert.Equal(7, moves.Count);
@@ -39,7 +39,7 @@ namespace Chess.Tests.TestPieces.KingTests
         [Fact]
         public void Test_White_King_Taking_Move_Exists()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? king = board.Contents[startSquare];
 
             Assert.Equal(destinationSquare, FindTakingMove(king, destinationSquare)?.EndSquare);
@@ -48,7 +48,7 @@ namespace Chess.Tests.TestPieces.KingTests
         [Fact]
         public void Test_White_King_Taking_Move_To_Right_Square()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? king = board.Contents[startSquare];
             Move? takingMove = FindTakingMove(king, destinationSquare);
             king.MovePiece(takingMove);
@@ -59,7 +59,7 @@ namespace Chess.Tests.TestPieces.KingTests
         [Fact]
         public void Test_White_King_Taking_Material_Update()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? king = board.Contents[startSquare];
             Move? takingMove = FindTakingMove(king, destinationSquare);
             king.MovePiece(takingMove);

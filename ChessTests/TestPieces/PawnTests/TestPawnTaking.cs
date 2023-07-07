@@ -25,7 +25,7 @@ namespace ChessTests.TestPieces.PawnTests
         [Fact]
         public void Test_White_Pawn_Move_Generation_With_Take()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? pawn = board.Contents[startSquare];
             List<Move> moves = pawn.LegalMoves;
             Assert.Equal(3, moves.Count);
@@ -34,7 +34,7 @@ namespace ChessTests.TestPieces.PawnTests
         [Fact]
         public void Test_White_Pawn_Taking_Move_Exists()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? pawn = board.Contents[startSquare];
 
             Assert.Equal(destinationSquare, FindTakingMove(pawn, destinationSquare)?.EndSquare);
@@ -43,7 +43,7 @@ namespace ChessTests.TestPieces.PawnTests
         [Fact]
         public void Test_White_Pawn_Taking_Move_To_Right_Square()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? pawn = board.Contents[startSquare];
             Move? takingMove = FindTakingMove(pawn, destinationSquare);
             pawn.MovePiece(takingMove);
@@ -54,7 +54,7 @@ namespace ChessTests.TestPieces.PawnTests
         [Fact]
         public void Test_White_Pawn_Taking_Material_Update()
         {
-            board.LoadMoves();
+            board.UpdateBoard();
             Piece? pawn = board.Contents[startSquare];
             Move? takingMove = FindTakingMove(pawn, destinationSquare);
             pawn.MovePiece(takingMove);
