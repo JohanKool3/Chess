@@ -26,7 +26,7 @@ namespace ChessTests.TestPieces.PawnTests
         public void Test_White_Pawn_Move_Generation_With_Take()
         {
             board.UpdateBoard();
-            Piece? pawn = board.Contents[startSquare];
+            Piece? pawn = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             List<Move> moves = pawn.LegalMoves;
             Assert.Equal(3, moves.Count);
         }
@@ -35,7 +35,7 @@ namespace ChessTests.TestPieces.PawnTests
         public void Test_White_Pawn_Taking_Move_Exists()
         {
             board.UpdateBoard();
-            Piece? pawn = board.Contents[startSquare];
+            Piece? pawn = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
 
             Assert.Equal(destinationSquare, FindTakingMove(pawn, destinationSquare)?.EndSquare);
         }
@@ -44,8 +44,8 @@ namespace ChessTests.TestPieces.PawnTests
         public void Test_White_Pawn_Taking_Move_To_Right_Square()
         {
             board.UpdateBoard();
-            Piece? pawn = board.Contents[startSquare];
-            Move? takingMove = FindTakingMove(pawn, destinationSquare);
+            Piece? pawn = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
+            Move? takingMove = FindTakingMove(pawn, destinationSquare) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test");
             pawn.MovePiece(takingMove);
             Assert.Equal(destinationSquare, pawn.Square);
 
@@ -55,8 +55,8 @@ namespace ChessTests.TestPieces.PawnTests
         public void Test_White_Pawn_Taking_Material_Update()
         {
             board.UpdateBoard();
-            Piece? pawn = board.Contents[startSquare];
-            Move? takingMove = FindTakingMove(pawn, destinationSquare);
+            Piece? pawn = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
+            Move? takingMove = FindTakingMove(pawn, destinationSquare) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test");
             pawn.MovePiece(takingMove);
             Assert.Equal(0, board.Material[1]);
         }
