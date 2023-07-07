@@ -6,7 +6,9 @@ namespace Chess.Tests.TestPieces.KnightTests
 {
     public class TestKnightTaking
     {
-        LogicalBoard board = new("8/8/3p4/P7/2N5/8/8/8");
+        private readonly LogicalBoard board = new("8/8/3p4/P7/2N5/8/8/8");
+        private readonly string destinationSquare = "D6";
+        private readonly string startSquare = "C4";
 
         private static Move? FindTakingMove(Piece pieceIn, string endSquare)
         {
@@ -24,7 +26,7 @@ namespace Chess.Tests.TestPieces.KnightTests
         public void Test_White_Knight_Move_Generation_With_Take()
         {
             board.LoadMoves();
-            Piece? knight = board.Contents["C4"];
+            Piece? knight = board.Contents[startSquare];
             List<Move> moves = knight.LegalMoves;
             Assert.Equal(7, moves.Count);
         }
@@ -33,19 +35,19 @@ namespace Chess.Tests.TestPieces.KnightTests
         public void Test_White_Knight_Taking_Move_Exists()
         {
             board.LoadMoves();
-            Piece? knight = board.Contents["C4"];
+            Piece? knight = board.Contents[startSquare];
 
-            Assert.Equal("D6", FindTakingMove(knight, "D6")?.EndSquare);
+            Assert.Equal(destinationSquare, FindTakingMove(knight, destinationSquare)?.EndSquare);
         }
 
         [Fact]
         public void Test_White_Knight_Taking_Move_To_Right_Square()
         {
             board.LoadMoves();
-            Piece? knight = board.Contents["C4"];
-            Move? takingMove = FindTakingMove(knight, "D6");
+            Piece? knight = board.Contents[startSquare];
+            Move? takingMove = FindTakingMove(knight, destinationSquare);
             knight.MovePiece(takingMove);
-            Assert.Equal("D6", knight.Square);
+            Assert.Equal(destinationSquare, knight.Square);
 
         }
 
@@ -53,8 +55,8 @@ namespace Chess.Tests.TestPieces.KnightTests
         public void Test_White_Knight_Taking_Material_Update()
         {
             board.LoadMoves();
-            Piece? knight = board.Contents["C4"];
-            Move? takingMove = FindTakingMove(knight, "D6");
+            Piece? knight = board.Contents[startSquare];
+            Move? takingMove = FindTakingMove(knight, destinationSquare);
             knight.MovePiece(takingMove);
             Assert.Equal(0, board.Material[1]);
         }
