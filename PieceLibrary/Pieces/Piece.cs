@@ -101,7 +101,7 @@ namespace PieceLibrary.Pieces
             // If the move isn't legal
             if (LegalMoves.Contains(move) is false)
             {
-                return;
+
             }
 
             else if (move.Capture is false) // Normal Movement

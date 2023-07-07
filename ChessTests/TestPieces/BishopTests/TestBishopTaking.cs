@@ -6,7 +6,7 @@ namespace Chess.Tests.TestPieces.BishopTests
 {
     public class TestBishopTaking
     {
-        LogicalBoard board = new ("8/8/8/3p4/2B5/8/8/8");
+        private readonly LogicalBoard board = new ("8/8/8/3p4/2B5/8/8/8");
 
         private static Move? FindTakingMove(Piece pieceIn)
         {
@@ -33,7 +33,6 @@ namespace Chess.Tests.TestPieces.BishopTests
         {
             board.LoadMoves();
             Piece? bishop = board.Contents["C4"];
-            List<Move> moves = bishop.LegalMoves;
 
             Assert.Equal("D5", FindTakingMove(bishop)?.EndSquare);
         }
