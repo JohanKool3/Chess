@@ -6,7 +6,9 @@ namespace ChessTests.TestPieces.PawnTests
 {
     public class TestPawnTaking
     {
-        private readonly LogicalBoard board = new("8/8/8/8/3p4/2P5/8/8");
+        private readonly LogicalBoard board = new("8/8/8/3p4/2P5/8/8/8");
+        private readonly string destinationSquare = "D5";
+        private readonly string startSquare = "C4";
 
         private static Move? FindTakingMove(Piece pieceIn, string endSquare)
         {
@@ -24,7 +26,7 @@ namespace ChessTests.TestPieces.PawnTests
         public void Test_White_Pawn_Move_Generation_With_Take()
         {
             board.LoadMoves();
-            Piece? pawn = board.Contents["C3"];
+            Piece? pawn = board.Contents[startSquare];
             List<Move> moves = pawn.LegalMoves;
             Assert.Equal(3, moves.Count);
         }
@@ -33,20 +35,19 @@ namespace ChessTests.TestPieces.PawnTests
         public void Test_White_Pawn_Taking_Move_Exists()
         {
             board.LoadMoves();
-            Piece? pawn = board.Contents["C3"];
-            List<Move> moves = pawn.LegalMoves;
+            Piece? pawn = board.Contents[startSquare];
 
-            Assert.Equal("D4", FindTakingMove(pawn, "D4").EndSquare);
+            Assert.Equal(destinationSquare, FindTakingMove(pawn, destinationSquare)?.EndSquare);
         }
 
         [Fact]
         public void Test_White_Pawn_Taking_Move_To_Right_Square()
         {
             board.LoadMoves();
-            Piece? pawn = board.Contents["C3"];
-            Move takingMove = FindTakingMove(pawn, "D4");
+            Piece? pawn = board.Contents[startSquare];
+            Move? takingMove = FindTakingMove(pawn, destinationSquare);
             pawn.MovePiece(takingMove);
-            Assert.Equal("D4", pawn.Square);
+            Assert.Equal(destinationSquare, pawn.Square);
 
         }
 
@@ -54,8 +55,8 @@ namespace ChessTests.TestPieces.PawnTests
         public void Test_White_Pawn_Taking_Material_Update()
         {
             board.LoadMoves();
-            Piece? pawn = board.Contents["C3"];
-            Move takingMove = FindTakingMove(pawn, "D4");
+            Piece? pawn = board.Contents[startSquare];
+            Move? takingMove = FindTakingMove(pawn, destinationSquare);
             pawn.MovePiece(takingMove);
             Assert.Equal(0, board.Material[1]);
         }
