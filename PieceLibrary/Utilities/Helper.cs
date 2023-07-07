@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PieceLibrary
+namespace Chess.PieceLibrary.Utilities
 {
     public class Helper
     {
         // Constant readonly values that can be used throughout the program
-        public readonly List<string> Files = new ()
+        public readonly List<string> Files = new()
             {
                 "A",
                 "B",
@@ -23,7 +23,7 @@ namespace PieceLibrary
 
         public int[] ConvertToIntegers(string square)
         {
-            if(square.Length > 2)
+            if (square.Length > 2)
             {
                 throw new Exception("Invalid square, square must be a valid square");
             }
@@ -31,7 +31,7 @@ namespace PieceLibrary
             int fileNum = Files.IndexOf(square[0].ToString()) + 1;
             int rank = Convert.ToInt32(char.GetNumericValue(square[1]));
 
-            int[] output = new [] { fileNum, rank };
+            int[] output = new[] { fileNum, rank };
 
             return output;
         }

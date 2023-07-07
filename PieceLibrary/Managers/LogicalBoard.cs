@@ -39,13 +39,22 @@ namespace PieceLibrary.Managers
         /// </summary>
         public void UpdateBoard()
         {
+
+            // To be able to effectively update the board, we need to:
+            // 1. Check for checkmate, check, stalemate
+            // 2. Update the board with the current moves
+
+            // Check for checkmate, check, stalemate
+            string? gameState = DetectGameState();
+
             LoadMoves();
 
         }
+
         /// <summary>
         /// Calculates all of the material in the board.
         /// </summary>
-        public void CalculateMaterial()
+        internal void CalculateMaterial()
         {
             Material[0] = 0;
             Material[1] = 0;
@@ -70,7 +79,7 @@ namespace PieceLibrary.Managers
         /// Calculates the material after a given move is made.
         /// </summary>
         /// <param name="move"></param>
-        public void CalculateMaterial(Move move)
+        internal void CalculateMaterial(Move move)
         {
 
             // Check to make sure there is a piece at the end square, prevents a null reference exception
@@ -91,7 +100,7 @@ namespace PieceLibrary.Managers
             }
         }
 
-        private void LoadMoves()
+        internal void LoadMoves()
         {
             foreach (var piece in contents.Values)
             {
@@ -100,6 +109,14 @@ namespace PieceLibrary.Managers
             }
         }
 
+        /// <summary>
+        /// This method is used to check if the king is in check or checkmate
+        /// </summary>
+        /// <returns></returns>
+        private string? DetectGameState()
+        {
+            return null;
+        }
     }
 
 }

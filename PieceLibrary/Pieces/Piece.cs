@@ -1,4 +1,5 @@
-﻿using PieceLibrary.Managers;
+﻿using Chess.PieceLibrary.Utilities;
+using PieceLibrary.Managers;
 
 namespace PieceLibrary.Pieces
 {
