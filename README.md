@@ -1,1 +1,1 @@
-# Chess
+# [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2a42e9189fbd4fdcbb6872df1cc508e6)](https://app.codacy.com/gh/Ecstatik/Chess/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
