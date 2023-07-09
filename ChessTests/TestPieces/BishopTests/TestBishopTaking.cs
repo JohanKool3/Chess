@@ -23,7 +23,7 @@ namespace Chess.Tests.TestPieces.BishopTests
         [Fact]
         public void Test_White_Bishop_Move_Generation_With_Take()
         {
-            board.Update();
+            board.UpdateBoard();
             Piece? bishop = board.Contents["C4"] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             List<Move> moves = bishop.LegalMoves;
             Assert.Equal(8, moves.Count);
@@ -32,7 +32,7 @@ namespace Chess.Tests.TestPieces.BishopTests
         [Fact]
         public void Test_White_Bishop_Taking_Move_Exists()
         {
-            board.Update();
+            board.UpdateBoard();
             Piece? bishop = board.Contents["C4"] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
 
             Assert.Equal("D5", FindTakingMove(bishop)?.EndSquare);
@@ -41,7 +41,7 @@ namespace Chess.Tests.TestPieces.BishopTests
         [Fact]
         public void Test_White_Bishop_Taking_Move_To_Right_Square()
         {
-            board.Update();
+            board.UpdateBoard();
             Piece? bishop = board.Contents["C4"] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             Move takingMove = FindTakingMove(bishop) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test. No taking move has been found");
             bishop.MovePiece(takingMove);
@@ -52,7 +52,7 @@ namespace Chess.Tests.TestPieces.BishopTests
         [Fact]
         public void Test_White_Bishop_Taking_Material_Update()
         {
-            board.Update();
+            board.UpdateBoard();
             Piece? bishop = board.Contents["C4"] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             Move? takingMove = FindTakingMove(bishop) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test");
             bishop.MovePiece(takingMove);

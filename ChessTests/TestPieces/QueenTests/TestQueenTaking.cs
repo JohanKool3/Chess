@@ -25,7 +25,7 @@ namespace Chess.Tests.TestPieces.QueenTests
         [Fact]
         public void Test_White_Queen_Move_Generation_With_Take()
         {
-            board.Update();
+            board.UpdateBoard();
             Piece? queen = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             List<Move> moves = queen.LegalMoves;
             Assert.Equal(24, moves.Count);
@@ -34,7 +34,7 @@ namespace Chess.Tests.TestPieces.QueenTests
         [Fact]
         public void Test_White_Queen_Taking_Move_Exists()
         {
-            board.Update();
+            board.UpdateBoard();
             Piece? queen = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
 
             Assert.Equal(destinationSquare, FindTakingMove(queen, destinationSquare)?.EndSquare);
@@ -43,7 +43,7 @@ namespace Chess.Tests.TestPieces.QueenTests
         [Fact]
         public void Test_White_Queen_Taking_Move_To_Right_Square()
         {
-            board.Update();
+            board.UpdateBoard();
             Piece? queen = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             Move? takingMove = FindTakingMove(queen, destinationSquare) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test");
             queen.MovePiece(takingMove);
@@ -54,7 +54,7 @@ namespace Chess.Tests.TestPieces.QueenTests
         [Fact]
         public void Test_White_Queen_Taking_Material_Update()
         {
-            board.Update();
+            board.UpdateBoard();
             Piece? queen = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             Move? takingMove = FindTakingMove(queen, destinationSquare) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test");
             queen.MovePiece(takingMove);

@@ -8,20 +8,16 @@ namespace Chess.PieceLibrary.Utilities
         private List<List<bool>> whiteSideControlledSquares;
         private List<List<bool>> blackSideControlledSquares;
 
-        public List<List<bool>>[] ControlledSquares { get; }
-
-        private  readonly LogicalBoard parentBoard;
+        private readonly LogicalBoard parentBoard;
         private readonly Helper helper = new();
-
-        public GameStateChecker(LogicalBoard parentBoard)
+        internal GameStateChecker(LogicalBoard parentBoard)
         {
             this.parentBoard = parentBoard;
 
             whiteSideControlledSquares = GenerateControlledGrid();
             blackSideControlledSquares = GenerateControlledGrid();
-
-            ControlledSquares = new List<List<bool>>[] { whiteSideControlledSquares, blackSideControlledSquares };
     }
+
         private List<List<bool>> GenerateControlledGrid()
         {
             List<List<bool>> grid = new();
@@ -40,11 +36,7 @@ namespace Chess.PieceLibrary.Utilities
             return grid;
         }
 
-
-        public void Update()
-        {
-              UpdateControlledSquares();
-        }
+        // TODO: Test this method
         private void UpdateControlledSquares()
         {
             parentBoard.LoadMoves(); // In case that the moves have not been loaded yet

@@ -19,7 +19,7 @@ namespace ChessTests.TestPieces.BishopTests
         [Fact]
         public void Test_Bishop_Moves()
         {
-            board.Update();
+            board.UpdateBoard();
             Assert.Equal(13, board.GetPiece(Square).LegalMoves.Count);
         }
 
@@ -27,7 +27,7 @@ namespace ChessTests.TestPieces.BishopTests
         public void Test_Bishop_Moves_With_Pieces()
         {
             LogicalBoard _board = new("8/8/2P1P3/3B4/2P1P3/8/8/8");
-            _board.Update();
+            _board.UpdateBoard();
 
             Assert.Empty(board.GetPiece(Square).LegalMoves);
         }

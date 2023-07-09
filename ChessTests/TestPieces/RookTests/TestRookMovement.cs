@@ -11,7 +11,7 @@ namespace ChessTests.TestPieces.RookTests
         [Fact]
         public void Test_Rook_Moves()
         {
-            board.Update();
+            board.UpdateBoard();
             Assert.Equal(14, board.GetPiece(Square).LegalMoves.Count);
         }
 
@@ -19,7 +19,7 @@ namespace ChessTests.TestPieces.RookTests
         public void Test_Rook_Moves_With_Pieces()
         {
             LogicalBoard _board = new("8/8/3P4/2PRP3/3P4/8/8/8");
-            _board.Update();
+            _board.UpdateBoard();
 
             Assert.Empty(board.GetPiece(Square).LegalMoves);
         }
