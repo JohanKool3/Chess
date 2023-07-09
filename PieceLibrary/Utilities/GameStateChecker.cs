@@ -10,7 +10,7 @@ namespace Chess.PieceLibrary.Utilities
 
         private readonly LogicalBoard parentBoard;
         private readonly Helper helper = new();
-        internal GameStateChecker(LogicalBoard parentBoard)
+        public GameStateChecker(LogicalBoard parentBoard)
         {
             this.parentBoard = parentBoard;
 
@@ -36,38 +36,19 @@ namespace Chess.PieceLibrary.Utilities
             return grid;
         }
 
+
+        public void Update()
+        {
+            UpdateControlledSquares();
+        }
+
         // TODO: Test this method
         private void UpdateControlledSquares()
         {
             parentBoard.LoadMoves(); // In case that the moves have not been loaded yet
-            foreach (Piece? piece in parentBoard.Contents.Values)
-            {
-                if(piece is null) // Do nothing if the square is empty
-                {
-                    continue;
-                }
-                else if (piece?.Color == "White")
-                {
-                    foreach (Move move in piece.LegalMoves)
-                    {
-                        int[] position = helper.ConvertToIntegers(move.EndSquare);
-                        whiteSideControlledSquares[position[0]][position[1]] = true;
-                    }
 
-                }
-                else if(piece?.Color == "Black")
-                {
-                    foreach (Move move in piece.LegalMoves)
-                    {
-                        int[] position = helper.ConvertToIntegers(move.EndSquare);
-                        blackSideControlledSquares[position[0]][position[1]] = true;
-                    }
-                }
-                else
-                {
-                    throw new InvalidDataException($"Invalid color for piece {piece?.Color}");
-                }
-            }
+            // TODO: Update the controlled squares to be equal to the squares that a piece can take in, in a given position
+            // Disregard En Passant for this calculation.
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using PieceLibrary.Pieces;
+﻿using Chess.PieceLibrary.Utilities;
+using PieceLibrary.Pieces;
 
 
 namespace PieceLibrary.Managers
@@ -9,6 +10,7 @@ namespace PieceLibrary.Managers
         public Dictionary<string, Piece?> Contents { get { return contents; } }
         public List<Move> MoveOrder = new ();
         public int[] Material = new int[2] {0, 0}; // 0 = White, 1 = Black
+        private readonly GameStateChecker gameStateChecker;
 
         /// <summary>
         /// Creates the board without having a FEN notation string given.
@@ -16,6 +18,7 @@ namespace PieceLibrary.Managers
         public LogicalBoard()
         {
             // Create the board
+            gameStateChecker = new GameStateChecker(this);
             CreateBoard();
             PopulateBoard();
             CalculateMaterial();
@@ -28,6 +31,7 @@ namespace PieceLibrary.Managers
         public LogicalBoard(string FENNotation)
         {
             // Create the board
+            gameStateChecker = new GameStateChecker(this);
             CreateBoard();
             PopulateBoard(FENNotation);
             CalculateMaterial();
@@ -45,8 +49,7 @@ namespace PieceLibrary.Managers
             // 2. Update the board with the current moves
 
             // Check for checkmate, check, stalemate
-            string? gameState = DetectGameState();
-
+            gameStateChecker.Update();
             LoadMoves();
 
         }
