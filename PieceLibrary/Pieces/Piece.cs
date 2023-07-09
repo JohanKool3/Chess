@@ -99,10 +99,9 @@ namespace PieceLibrary.Pieces
 
         public virtual void MovePiece(Move move)
         {
-            // If the move isn't legal
             if (LegalMoves.Contains(move) is false)
             {
-
+                throw new ArgumentException($"Invalid Move, move is not in the attribute 'LegalMove' |{move}");
             }
 
             else if (move.Capture is false) // Normal Movement

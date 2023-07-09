@@ -6,10 +6,10 @@ namespace PieceLibrary.Managers
 {
     partial class LogicalBoard
     {
-        private Dictionary<string, Piece?> contents = new ();
+        private readonly Dictionary<string, Piece?> contents = new ();
         public Dictionary<string, Piece?> Contents { get { return contents; } }
         public List<Move> MoveOrder = new ();
-        public int[] Material = new int[2] {0, 0}; // 0 = White, 1 = Black
+        public int[] Material = new [] {0, 0}; // 0 = White, 1 = Black
         private readonly GameStateChecker gameStateChecker;
 
         /// <summary>
@@ -110,15 +110,6 @@ namespace PieceLibrary.Managers
                 piece?.GenerateMoves();
 
             }
-        }
-
-        /// <summary>
-        /// This method is used to check if the king is in check or checkmate
-        /// </summary>
-        /// <returns></returns>
-        private string? DetectGameState()
-        {
-            return null;
         }
     }
 

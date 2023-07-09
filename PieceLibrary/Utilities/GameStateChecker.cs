@@ -5,8 +5,10 @@ namespace Chess.PieceLibrary.Utilities
 {
     public class GameStateChecker
     {
-        private List<List<bool>> whiteSideControlledSquares;
-        private List<List<bool>> blackSideControlledSquares;
+        private readonly List<List<bool>> whiteSideControlledSquares;
+        private readonly List<List<bool>> blackSideControlledSquares;
+        public List<List<bool>>? WhiteControlledSquares { get; }
+        public List<List<bool>>? BlackControlledSquares { get; }
 
         private readonly LogicalBoard parentBoard;
         private readonly Helper helper = new();
