@@ -11,7 +11,7 @@ namespace ChessTests.TestPieces.QueenTests
         [Fact]
         public void Test_Queen_Moves()
         {
-            board.UpdateBoard();
+            board.Update();
             Assert.Equal(27, board.GetPiece(Square).LegalMoves.Count);
         }
 
@@ -19,7 +19,7 @@ namespace ChessTests.TestPieces.QueenTests
         public void Test_Queen_Moves_With_Pieces()
         {
             LogicalBoard _board = new("8/8/2PPP3/2PQP3/2PPP3/8/8/8");
-            _board.UpdateBoard();
+            _board.Update();
 
             Assert.Empty(board.GetPiece(Square).LegalMoves);
         }

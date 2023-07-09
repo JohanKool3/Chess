@@ -37,7 +37,7 @@ namespace PieceLibrary.Managers
         /// <summary>
         /// Updates the board with current moves and also performs a check to see if the king is in check, checkmate or stalemate.
         /// </summary>
-        public void UpdateBoard()
+        public void Update()
         {
 
             // To be able to effectively update the board, we need to:

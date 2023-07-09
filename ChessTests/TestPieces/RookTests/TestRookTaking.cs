@@ -25,7 +25,7 @@ namespace Chess.Tests.TestPieces.RookTests
         [Fact]
         public void Test_White_Rook_Move_Generation_With_Take()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? rook = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             List<Move> moves = rook.LegalMoves;
             Assert.Equal(13, moves.Count);
@@ -34,7 +34,7 @@ namespace Chess.Tests.TestPieces.RookTests
         [Fact]
         public void Test_White_Rook_Taking_Move_Exists()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? rook = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
 
             Assert.Equal(destinationSquare, FindTakingMove(rook, destinationSquare)?.EndSquare);
@@ -43,7 +43,7 @@ namespace Chess.Tests.TestPieces.RookTests
         [Fact]
         public void Test_White_Rook_Taking_Move_To_Right_Square()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? rook = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             Move? takingMove = FindTakingMove(rook, destinationSquare) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test");
             rook.MovePiece(takingMove);
@@ -54,7 +54,7 @@ namespace Chess.Tests.TestPieces.RookTests
         [Fact]
         public void Test_White_Rook_Taking_Material_Update()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? rook = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             Move? takingMove = FindTakingMove(rook, destinationSquare) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test");
             rook.MovePiece(takingMove);

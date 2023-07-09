@@ -10,7 +10,7 @@ namespace ChessTests.TestPieces
         [Fact]
         public void Test_Board_Move_Load_Rook()
         {
-            board.UpdateBoard();
+            board.Update();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ChessTests.TestPieces.KingTests
         [Fact]
         public void Test_King_Move_Generation()
         {
-            board.UpdateBoard();
+            board.Update();
             Assert.Equal(8, board.GetPiece(square).LegalMoves.Count);
         }
 

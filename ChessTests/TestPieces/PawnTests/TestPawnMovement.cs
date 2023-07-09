@@ -9,7 +9,7 @@ namespace ChessTests.TestPieces.PawnTests
         [Fact]
         public void Test_Board_Move_Load_Pawn()
         {
-            board.UpdateBoard();
+            board.Update();
             Assert.Equal(2, board.GetPiece("A2").LegalMoves.Count);
 
         }

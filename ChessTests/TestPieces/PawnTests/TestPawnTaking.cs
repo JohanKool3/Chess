@@ -25,7 +25,7 @@ namespace ChessTests.TestPieces.PawnTests
         [Fact]
         public void Test_White_Pawn_Move_Generation_With_Take()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? pawn = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             List<Move> moves = pawn.LegalMoves;
             Assert.Equal(3, moves.Count);
@@ -34,7 +34,7 @@ namespace ChessTests.TestPieces.PawnTests
         [Fact]
         public void Test_White_Pawn_Taking_Move_Exists()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? pawn = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
 
             Assert.Equal(destinationSquare, FindTakingMove(pawn, destinationSquare)?.EndSquare);
@@ -43,7 +43,7 @@ namespace ChessTests.TestPieces.PawnTests
         [Fact]
         public void Test_White_Pawn_Taking_Move_To_Right_Square()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? pawn = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             Move? takingMove = FindTakingMove(pawn, destinationSquare) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test");
             pawn.MovePiece(takingMove);
@@ -54,7 +54,7 @@ namespace ChessTests.TestPieces.PawnTests
         [Fact]
         public void Test_White_Pawn_Taking_Material_Update()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? pawn = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             Move? takingMove = FindTakingMove(pawn, destinationSquare) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test");
             pawn.MovePiece(takingMove);
