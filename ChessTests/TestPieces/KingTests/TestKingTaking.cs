@@ -30,7 +30,7 @@ namespace Chess.Tests.TestPieces.KingTests
         [Fact]
         public void Test_White_King_Move_Generation_With_Take()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? king = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             List<Move> moves = king.LegalMoves;
             Assert.Equal(7, moves.Count);
@@ -39,7 +39,7 @@ namespace Chess.Tests.TestPieces.KingTests
         [Fact]
         public void Test_White_King_Taking_Move_Exists()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? king = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
 
             Assert.Equal(destinationSquare, FindTakingMove(king, destinationSquare)?.EndSquare);
@@ -48,7 +48,7 @@ namespace Chess.Tests.TestPieces.KingTests
         [Fact]
         public void Test_White_King_Taking_Move_To_Right_Square()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? king = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             Move? takingMove = FindTakingMove(king, destinationSquare) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test");
             king.MovePiece(takingMove);
@@ -59,7 +59,7 @@ namespace Chess.Tests.TestPieces.KingTests
         [Fact]
         public void Test_White_King_Taking_Material_Update()
         {
-            board.UpdateBoard();
+            board.Update();
             Piece? king = board.Contents[startSquare] ?? throw new NullReferenceException("Piece must not be null to perform this test. Index given is null");
             Move? takingMove = FindTakingMove(king, destinationSquare) ?? throw new NullReferenceException("Taking move must be a move in order to perform this test");
             king.MovePiece(takingMove);

@@ -16,7 +16,7 @@ namespace ChessTests.TestPieces.KnightTests
         [Fact]
         public void Test_Knight_Moves()
         {
-            board.UpdateBoard();
+            board.Update();
             Assert.Equal(8, board.GetPiece(Square).LegalMoves.Count);
         }
 
@@ -24,7 +24,7 @@ namespace ChessTests.TestPieces.KnightTests
         public void Test_Edge_Move_Cases()
         {
             LogicalBoard _ = new("8/8/8/8/8/8/8/1N6");
-            _.UpdateBoard();
+            _.Update();
             Assert.Equal(3, _.GetPiece("B1").LegalMoves.Count);
         }
 
@@ -32,7 +32,7 @@ namespace ChessTests.TestPieces.KnightTests
         public void Test_Blocked_Move_Cases()
         {
             LogicalBoard _ = new("8/2P1P3/1P3P2/3N4/1P3P2/2P1P3/8/8");
-            _.UpdateBoard();
+            _.Update();
             Assert.Empty(_.GetPiece("D5").LegalMoves);
         }
 
@@ -40,7 +40,7 @@ namespace ChessTests.TestPieces.KnightTests
         public void Test_Knight_Take_Cases()
         {
             LogicalBoard _ = new("8/2p1P3/1p3P2/3N4/1p3P2/2p1P3/8/8");
-            _.UpdateBoard();
+            _.Update();
             Assert.Equal(4, _.GetPiece("D5").TakingMoves.Count);
         }
     }

@@ -1,4 +1,5 @@
-﻿using PieceLibrary.Pieces;
+﻿using Chess.PieceLibrary.Utilities;
+using PieceLibrary.Pieces;
 
 
 namespace PieceLibrary.Managers
@@ -10,12 +11,15 @@ namespace PieceLibrary.Managers
         public List<Move> MoveOrder = new ();
         public int[] Material = new int[2] {0, 0}; // 0 = White, 1 = Black
 
+        public GameStateChecker GameStateChecker;
+
         /// <summary>
         /// Creates the board without having a FEN notation string given.
         /// </summary>
         public LogicalBoard()
         {
             // Create the board
+            GameStateChecker = new GameStateChecker(this);
             CreateBoard();
             PopulateBoard();
             CalculateMaterial();
@@ -28,6 +32,7 @@ namespace PieceLibrary.Managers
         public LogicalBoard(string FENNotation)
         {
             // Create the board
+            GameStateChecker = new GameStateChecker(this);
             CreateBoard();
             PopulateBoard(FENNotation);
             CalculateMaterial();
@@ -37,7 +42,7 @@ namespace PieceLibrary.Managers
         /// <summary>
         /// Updates the board with current moves and also performs a check to see if the king is in check, checkmate or stalemate.
         /// </summary>
-        public void UpdateBoard()
+        public void Update()
         {
 
             // To be able to effectively update the board, we need to:
@@ -45,8 +50,7 @@ namespace PieceLibrary.Managers
             // 2. Update the board with the current moves
 
             // Check for checkmate, check, stalemate
-            string? gameState = DetectGameState();
-
+            GameStateChecker.Update();
             LoadMoves();
 
         }
@@ -109,14 +113,6 @@ namespace PieceLibrary.Managers
             }
         }
 
-        /// <summary>
-        /// This method is used to check if the king is in check or checkmate
-        /// </summary>
-        /// <returns></returns>
-        private string? DetectGameState()
-        {
-            return null;
-        }
     }
 
 }
