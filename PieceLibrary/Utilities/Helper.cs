@@ -39,7 +39,9 @@ namespace Chess.PieceLibrary.Utilities
         public string ConvertToString(int[] integersIn)
             => $"{Files[integersIn[0] - 1]}{integersIn[1]}";
 
+#pragma warning disable CA1822 // Mark members as static
         public bool BoundsCheck(int[] integersIn)
+#pragma warning restore CA1822 // Mark members as static
             => integersIn[0] > 0 && integersIn[0] < 9 && integersIn[1] > 0 && integersIn[1] < 9;
     }
 }

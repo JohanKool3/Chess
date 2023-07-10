@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="OpenCover" Version="4.7.1221" />
+  </ItemGroup>
+
 </Project>
