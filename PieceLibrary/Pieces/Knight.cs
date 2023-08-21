@@ -10,10 +10,10 @@ namespace PieceLibrary.Pieces
             PieceCode = $"{char.ToUpper(color[0])}-N";
         }
 
-        public override void GenerateMoves()
+        public override async Task GenerateMovesAsync()
         {
             // Wipes moves from the Legal Moves List
-            base.GenerateMoves();
+            await base.GenerateMovesAsync();
             int[] currentPosition = helper.ConvertToIntegers(Square);
 
             // This is a list of all the possible moves that a knight can make

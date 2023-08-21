@@ -14,13 +14,13 @@ namespace PieceLibrary.Pieces
             Value = 1; // Pawns are worth 1 point
         }
 
-        public override void GenerateMoves()
+        public override async Task GenerateMovesAsync()
         {
             /// <summary>
             /// This method generates all of the moves that the pawn can make
             /// </summary>
             ///
-            base.GenerateMoves();
+            await base.GenerateMovesAsync();
 
 
             int colorMultiplier = 1;

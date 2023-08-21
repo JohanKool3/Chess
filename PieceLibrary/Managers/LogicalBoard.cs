@@ -103,12 +103,24 @@ namespace PieceLibrary.Managers
             }
         }
 
-        internal void LoadMoves()
+        internal async void LoadMoves()
         {
-            foreach (var piece in contents.Values)
-            {
-                piece?.GenerateMoves();
+            List<Task> generators = new();
 
+            foreach(Piece piece in contents.Values)
+            {
+                // Return the tasks to be run
+                if(piece is not null)
+                {
+                    generators.Add(piece.GenerateMovesAsync());
+                }
+                
+                // Run the tasks asynchronously
+                foreach(Task task in generators)
+                {
+                    await task.ConfigureAwait(false);
+                }
+                await Task.WhenAll(generators);
             }
         }
     }
