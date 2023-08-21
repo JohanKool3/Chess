@@ -10,9 +10,9 @@ namespace PieceLibrary.Pieces
             Value = null;
         }
 
-        public override void GenerateMoves()
+        public override async Task GenerateMovesAsync()
         {
-            base.GenerateMoves();
+            await base.GenerateMovesAsync();
 
             // King can move one square in any direction
 

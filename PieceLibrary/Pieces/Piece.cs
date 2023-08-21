@@ -128,7 +128,7 @@ namespace PieceLibrary.Pieces
             }
         }
 
-        public virtual void GenerateMoves()
+        public virtual async Task GenerateMovesAsync()
         {
             // This method is overridden in the child classes
             LegalMoves.Clear();

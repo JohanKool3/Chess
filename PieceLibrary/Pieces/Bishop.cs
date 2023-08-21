@@ -9,9 +9,9 @@ namespace PieceLibrary.Pieces
             Value = 3; // Bishops are worth 3 points
         }
 
-        public override void GenerateMoves()
+        public override async Task GenerateMovesAsync()
         {
-            base.GenerateMoves();
+            await base.GenerateMovesAsync();
 
             List<int[]> _allDirections = new(){
                 new [] {1, 1},

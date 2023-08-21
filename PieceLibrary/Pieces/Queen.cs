@@ -14,9 +14,9 @@ namespace PieceLibrary.Pieces
             Value = 9; // Queens are worth 9 points
         }
 
-        public override void GenerateMoves()
+        public override async Task GenerateMovesAsync()
         {
-            base.GenerateMoves();
+            await base.GenerateMovesAsync();
 
             List<int[]> _allDirections = new()
             {
